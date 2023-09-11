@@ -3,3 +3,7 @@
     hosts: all
     roles:
       - init
+  - name: update and seyup nginx
+    hosts: web_servers
+    roles:
+      - nginx

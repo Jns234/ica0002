@@ -1,0 +1,5 @@
+- name: Update the repository cache and update package "nginx" to latest version
+  ansible.builtin.apt:
+    name: nginx
+    state: latest
+    update_cache: yes
