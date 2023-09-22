@@ -1,5 +1,21 @@
+---
 - name: Update the repository cache and update package "nginx" to latest version
   ansible.builtin.apt:
     name: nginx
     state: latest
     update_cache: yes
+
+- name: copy default conf to nginx sites-enabled
+  ansible.builtin.copy:
+    src: ./../files/default
+    dest: /etc/nginx/sites-enabled/
+    mode: '0644'
+  notify:
+  - Restart nginx
+
+
+- name: start nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started 
+    enabled: yes

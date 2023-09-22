@@ -3,7 +3,9 @@
     hosts: all
     roles:
       - init
-  - name: update and seyup nginx
+  - name: update and setup agama and nginx
     hosts: web_servers
     roles:
+      - agama
       - nginx
+      - uwsgi
