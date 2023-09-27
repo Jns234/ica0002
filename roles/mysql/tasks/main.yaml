@@ -1,0 +1,12 @@
+---
+- name: Update the repository cache and update package "mysql-server" to latest version
+  ansible.builtin.apt:
+    name: mysql-server
+    state: latest
+    update_cache: yes
+
+- name: start mysql-server
+  ansible.builtin.service:
+    name: mysql-server
+    state: started 
+    enabled: yes

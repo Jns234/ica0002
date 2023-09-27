@@ -3,6 +3,12 @@
     hosts: all
     roles:
       - init
+  
+  - name: Database server
+    hosts: db_servers
+    roles:
+      - mysql
+
   - name: update and setup agama and nginx
     hosts: web_servers
     roles:
