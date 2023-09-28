@@ -10,10 +10,12 @@
     state: present
 
 - name: copy AGAMA conf files
-  ansible.builtin.copy:
-    src: ./../files/agama.ini
-    dest: /etc/uwsgi/apps-enabled/
-    mode: '0644'
+  ansible.builtin.template:
+    src: ./../templates/agama.ini.j2
+    dest: /etc/uwsgi/apps-enabled/agama.ini
+    owner: agama
+    mode: '0600'
+  no_log: true
   notify:
   - Restart uwsgi
 

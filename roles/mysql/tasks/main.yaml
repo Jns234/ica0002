@@ -1,12 +1,34 @@
 ---
 - name: Update the repository cache and update package "mysql-server" to latest version
   ansible.builtin.apt:
-    name: mysql-server
+    pkg:
+    - mysql-server
+    - python3-pymysql
     state: latest
-    update_cache: yes
+
+- name: copy override mysql conf to mysql conf
+  ansible.builtin.copy:
+    src: ./../files/override.cnf
+    dest: /etc/mysql/mysql.conf.d/
+    mode: '0644'
+  notify:
+  - Restart mysql
 
 - name: start mysql-server
   ansible.builtin.service:
-    name: mysql-server
+    name: mysql
     state: started 
     enabled: yes
+
+- name: MySQL database
+  community.mysql.mysql_db:
+    name: "{{ mysql_database }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: Create Mysql user for agama database
+  community.mysql.mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    host: "%"
+    priv: "{{ mysql_database }}.*:ALL"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
