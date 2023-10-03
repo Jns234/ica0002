@@ -1,4 +1,4 @@
-mysql_host: 192.168.42.111
+mysql_host: JanVm-2
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -9,3 +9,12 @@ mysql_password: !vault |
           3561626132383737340a383934613037323639353836316439666563363862626135363661376665
           3963
 uswg_addr: localhost:5000
+dns_forwarders:
+  - 8.8.8.8
+  - 1.1.1.1
+  - 9.9.9.9
+local_ip_self: 192.168.42.0/23
+local_ip_second: 127.0.0.0/8
+startup_name: jankang
+domain: jankang.jk.
+domain_dotles: jankang.jk

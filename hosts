@@ -1,8 +1,11 @@
-JanVm-1 ansible_host=193.40.156.67 ansible_port=11522 ansible_user=ubuntu
-JanVm-2 ansible_host=193.40.156.67 ansible_port=11122 ansible_user=ubuntu
+JanVm-1 ansible_host=193.40.156.67 ansible_port=28222 ansible_user=ubuntu
+JanVm-2 ansible_host=193.40.156.67 ansible_port=38422 ansible_user=ubuntu
 
 [db_servers]
 JanVm-2
 
 [web_servers]
 JanVm-1
+
+[dns_servers]
+JanVm-2

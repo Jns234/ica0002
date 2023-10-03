@@ -15,3 +15,13 @@
       - agama
       - nginx
       - uwsgi
+
+  - name: setup bind9
+    hosts: dns_servers
+    roles:
+      - bind9
+
+  - name: Change the dns resov for bind9
+    hosts: all
+    roles:
+      - bind9_resolv

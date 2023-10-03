@@ -1,0 +1,14 @@
+acl nets { {{ local_ip_self }}; {{local_ip_second }}; };
+
+options {
+
+directory "/var/lib/bind";
+
+forwarders {
+    {% for forwarder in dns_forwarders %}
+    {{ forwarder }};
+    {% endfor %}
+};
+allow-query { nets; };
+    dnssec-validation no;
+};

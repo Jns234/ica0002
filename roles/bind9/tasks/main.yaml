@@ -1,0 +1,26 @@
+---
+- name: Get latest Bind9
+  ansible.builtin.apt:
+    name: bind9
+    state: latest
+
+- name: Copy conf.options to machine
+  ansible.builtin.template:
+    src: ./../templates/named.conf.options.j2
+    dest: /etc/bind/named.conf.options
+  notify:
+  - Restart bind9
+
+- name: Copy zone to machine
+  ansible.builtin.template:
+    src: ./../templates/zone.j2
+    dest: /var/lib/bind/db.jankang.jk
+  notify:
+  - Restart rndc
+
+- name: Copy zone config
+  ansible.builtin.template:
+    src: ./../templates/named.conf.local.j2
+    dest: /etc/bind/named.conf.local     
+  notify:
+  - Restart bind9

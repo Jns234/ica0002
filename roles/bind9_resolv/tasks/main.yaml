@@ -1,0 +1,10 @@
+---
+- name: Stop systemd-resolved
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: stopped
+
+- name: Copy manual resolve to machine
+  ansible.builtin.template:
+    src: ./../templates/resolv.conf.j2
+    dest: /etc/resolv.conf
