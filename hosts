@@ -9,3 +9,6 @@ Jns234-1
 
 [dns_servers]
 Jns234-2
+
+[prometheus_servers]
+Jns234-2

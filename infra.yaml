@@ -25,3 +25,9 @@
     hosts: all
     roles:
       - bind_resolv
+
+  - name: Install and configure prometheus
+    hosts: prometheus_servers
+    roles:
+      - prometheus
+  

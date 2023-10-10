@@ -26,3 +26,10 @@
   ansible.builtin.apt:
     cache_valid_time: 86400
     update_cache: yes
+
+- name: have prometheus node exporter on all machines
+  ansible.builtin.apt:
+    pkg:
+    - prometheus-node-exporter
+    state: latest
+
