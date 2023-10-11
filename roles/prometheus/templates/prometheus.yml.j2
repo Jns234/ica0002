@@ -31,7 +31,7 @@ scrape_configs:
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
-
+    metrics_path: /prometheus/metrics
     static_configs:
     - targets:
     {% for vm in groups['prometheus_servers']%}
