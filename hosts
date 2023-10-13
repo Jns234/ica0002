@@ -1,5 +1,5 @@
-Jns234-1 ansible_host=193.40.156.67 ansible_port=42222 ansible_user=ubuntu
-Jns234-2 ansible_host=193.40.156.67 ansible_port=41422 ansible_user=ubuntu
+Jns234-1 ansible_host=193.40.156.67 ansible_port=36122 ansible_user=ubuntu
+Jns234-2 ansible_host=193.40.156.67 ansible_port=36422 ansible_user=ubuntu
 
 [db_servers]
 Jns234-2
