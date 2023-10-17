@@ -22,5 +22,5 @@
 - name: Start uwsgi
   ansible.builtin.service:
     name: uwsgi
-    state: started
+    state: restarted
     enabled: yes

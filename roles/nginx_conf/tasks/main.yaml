@@ -1,0 +1,15 @@
+---
+- name: copy default conf to nginx sites-enabled
+  ansible.builtin.template:
+    src: ./../templates/default.j2
+    dest: /etc/nginx/sites-enabled/default
+    mode: '0644'
+  notify:
+  - Restart nginx
+
+
+- name: start nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started 
+    enabled: yes

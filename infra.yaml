@@ -9,12 +9,12 @@
     roles:
       - mysql
 
-  - name: update and setup agama and nginx
+  - name: update and setup agama
     hosts: web_servers
     roles:
       - agama
-      - nginx
       - uwsgi
+      - nginx
 
   - name: setup bind9
     hosts: dns_servers
@@ -25,6 +25,11 @@
     hosts: all
     roles:
       - bind_resolv
+
+  - name: configure nginx
+    hosts: web_servers
+    roles:
+      - nginx_conf
 
   - name: Install and configure prometheus
     hosts: prometheus_servers
