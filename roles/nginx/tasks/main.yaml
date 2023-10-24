@@ -1,6 +1,28 @@
 ---
 - name: Update the repository cache and update package "nginx" to latest version
   ansible.builtin.apt:
-    name: nginx
+    pkg:
+    - nginx 
+    - prometheus-nginx-exporter
     state: latest
     update_cache: yes
+
+- name: copy default conf to nginx sites-enabled
+  ansible.builtin.template:
+    src: ./../templates/default.j2
+    dest: /etc/nginx/sites-enabled/default
+    mode: '0644'
+  notify:
+  - Restart nginx
+
+- name: start nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started 
+    enabled: yes
+
+- name: start nginx node exporter
+  ansible.builtin.service:
+    name: prometheus-nginx-exporter
+    state: started 
+    enabled: yes

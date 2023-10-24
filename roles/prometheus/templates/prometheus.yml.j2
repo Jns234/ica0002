@@ -35,18 +35,14 @@ scrape_configs:
     static_configs:
     - targets:
     {% for vm in groups['prometheus_servers']%}
-       - {{ vm }}:9090
+       - {{ vm }}:{{ prometheus_servers_port }}
     {% endfor %}
 
-  - job_name: node
-    # If prometheus-node-exporter is installed, grab stats about the local
-    # machine by default.
-    static_configs:
-      - targets: ['localhost:9100']
-
-  - job_name: linux
+{% for job in prometheus_jobs %}
+  - job_name: {{ job.name }}
     static_configs:
       - targets:
-      {% for vm in groups['all']%}
-        - {{ vm }}:9100
-      {% endfor %}
+{% for vm in groups[job.target_group]%}
+        - {{ vm }}:{{ job.target_port }}
+{% endfor %}
+{% endfor%}

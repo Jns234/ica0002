@@ -33,3 +33,9 @@
     - prometheus-node-exporter
     state: latest
 
+- name: Have ca-certificates package
+  ansible.builtin.apt:
+    pkg:
+    - ca-certificates=20230311ubuntu0.20.04.1
+    state: present
+

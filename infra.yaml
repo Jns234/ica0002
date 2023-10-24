@@ -3,36 +3,49 @@
     hosts: all
     roles:
       - init
+    tags: init
   
   - name: Database server
     hosts: db_servers
     roles:
       - mysql
+    tags: db 
 
   - name: update and setup agama
     hosts: web_servers
     roles:
       - agama
       - uwsgi
-      - nginx
+    tags: web
 
   - name: setup bind9
     hosts: dns_servers
     roles:
       - bind
+    tags: dns
 
   - name: Change the dns resov for bind9
     hosts: all
     roles:
       - bind_resolv
+    tags: dns_resolv
 
-  - name: configure nginx
+  - name: reconfig nginx
     hosts: web_servers
     roles:
-      - nginx_conf
+      - nginx
+    tags: nginx
 
   - name: Install and configure prometheus
     hosts: prometheus_servers
     roles:
       - prometheus
-  
+    tags: prom
+
+  - name: Install Grafana
+    hosts: grafana_servers
+    roles:
+      - grafana
+    tags: grafana
+
+

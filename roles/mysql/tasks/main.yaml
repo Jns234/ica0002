@@ -2,9 +2,10 @@
 - name: Update the repository cache and update package "mysql-server" to latest version
   ansible.builtin.apt:
     pkg:
-    - mysql-server
+    - mysql-server>=5.6
     - python3-pymysql
-    state: latest
+    - prometheus-mysqld-exporter
+    state: present
 
 - name: copy override mysql conf to mysql conf
   ansible.builtin.copy:
@@ -32,3 +33,29 @@
     host: "%"
     priv: "{{ mysql_database }}.*:ALL"
     login_unix_socket: /var/run/mysqld/mysqld.sock
+  no_log: yes
+
+- name: Create Mysql user for mysqld exporter
+  community.mysql.mysql_user:
+    name: "{{ mysql_exporter_user }}"
+    password: "{{ mysql_exporter_password }}"
+    priv: '*.*:PROCESS,REPLICATION CLIENT,SELECT'
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  no_log: yes
+
+- name: configure mysqld
+  ansible.builtin.template:
+    src: ./../templates/my.cnf.j2
+    dest: /var/lib/prometheus/.my.cnf
+    owner: prometheus
+    group: prometheus
+    mode: 0644
+  no_log: yes
+  notify:
+  - Restart mysqld exporter
+
+- name: make sure mysql-exporter is started
+  ansible.builtin.service:
+    name: prometheus-mysqld-exporter
+    state: started 
+    enabled: yes

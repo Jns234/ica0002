@@ -12,3 +12,7 @@ forwarders {
 allow-query { nets; };
     dnssec-validation no;
 };
+
+statistics-channels {
+  inet {{ bind_exporter_addr}} port {{ bind_exporter_port}} allow { {{ bind_exporter_addr}}; };
+};

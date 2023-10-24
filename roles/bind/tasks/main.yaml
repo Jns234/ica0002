@@ -1,7 +1,9 @@
 ---
-- name: Get latest Bind9
+- name: Get Bind9 and bind exporter
   ansible.builtin.apt:
-    name: bind9
+    pkg:
+    - bind9
+    - prometheus-bind-exporter
     state: latest
 
 - name: Copy conf.options to machine
@@ -24,3 +26,9 @@
     dest: /etc/bind/named.conf.local     
   notify:
   - Restart bind9
+
+- name: Bind exporter is started
+  ansible.builtin.service:
+    name: prometheus-bind-exporter
+    state: started
+    enabled: yes
