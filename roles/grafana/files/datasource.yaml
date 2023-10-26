@@ -9,4 +9,4 @@ datasources:
    url: http://Jns234-2:9090/prometheus/
    version: 1
    editable: false
-   
+   uid: "a246ec4c-caab-4441-a51e-69b8db609ab0"

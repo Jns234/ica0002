@@ -32,6 +32,7 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
@@ -127,6 +128,7 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
@@ -170,7 +172,8 @@
                   "value": 80
                 }
               ]
-            }
+            },
+            "unit": "percentunit"
           },
           "overrides": []
         },
@@ -278,7 +281,7 @@
           },
           "textMode": "auto"
         },
-        "pluginVersion": "10.1.5",
+        "pluginVersion": "10.2.0",
         "targets": [
           {
             "datasource": {
@@ -307,6 +310,7 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
@@ -406,6 +410,7 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
@@ -558,7 +563,7 @@
           },
           "textMode": "auto"
         },
-        "pluginVersion": "10.1.5",
+        "pluginVersion": "10.2.0",
         "targets": [
           {
             "datasource": {
@@ -606,7 +611,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": null
                 },
                 {
                   "color": "red",
@@ -639,7 +645,7 @@
           },
           "textMode": "auto"
         },
-        "pluginVersion": "10.1.5",
+        "pluginVersion": "10.2.0",
         "targets": [
           {
             "datasource": {
@@ -672,6 +678,7 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
@@ -707,7 +714,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green"
+                  "color": "green",
+                  "value": null
                 },
                 {
                   "color": "red",
@@ -762,7 +770,6 @@
     ],
     "refresh": "",
     "schemaVersion": 38,
-    "style": "dark",
     "tags": [],
     "templating": {
       "list": []
@@ -775,6 +782,6 @@
     "timezone": "",
     "title": "Dashboard",
     "uid": "dd857c32-78da-40d2-a375-6823d3d0159a",
-    "version": 5,
+    "version": 3,
     "weekStart": ""
   }
