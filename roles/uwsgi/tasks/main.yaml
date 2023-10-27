@@ -1,12 +1,9 @@
 ---
-- name: Install uWSGI
+- name: Install uWSGI and plugins
   ansible.builtin.apt:
-    name: uwsgi
-    state: present
-
-- name: Install uWSGI-python-plugin
-  ansible.builtin.apt:
-    name: uwsgi-plugin-python3
+    pkg:
+    - uwsgi
+    - uwsgi-plugin-python3
     state: present
 
 - name: copy AGAMA conf files
@@ -22,5 +19,5 @@
 - name: Start uwsgi
   ansible.builtin.service:
     name: uwsgi
-    state: restarted
+    state: started
     enabled: yes
