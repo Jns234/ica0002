@@ -1,0 +1,35 @@
+---
+- name: install fping
+  ansible.builtin.apt:
+    pkg:
+    - fping
+    state: present
+
+- name: copy pinger.sh script
+  ansible.builtin.copy:
+    src: ./../files/pinger.sh
+    dest: /usr/local/bin/pinger
+    mode: u+rwx
+
+- name: copy pinger service file
+  ansible.builtin.template:
+    src: ./../templates/pinger.service.j2
+    dest: /etc/systemd/system/pinger.service
+
+- name: create /etc/pinger dir
+  ansible.builtin.file:
+    path: /etc/pinger
+    state: directory
+
+- name: copy service config file
+  ansible.builtin.template:
+    src: ./../templates/pinger.conf.j2
+    dest: /etc/pinger/pinger.conf
+
+
+- name: start pinger service
+  ansible.builtin.systemd:
+    state: started
+    enabled: true
+    daemon_reload: true
+    name: pinger

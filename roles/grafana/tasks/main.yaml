@@ -40,8 +40,11 @@
 
 - name: copy Grafana Dashboard json
   ansible.builtin.copy:
-    src: ./../files/main.json
+    src: ./../files/{{ item }}
     dest: /var/lib/grafana/dashboards/
+  loop:
+    - main.json
+    - syslog.json
   notify:
   - Restart Grafana
 

@@ -43,6 +43,9 @@ prometheus_jobs:
   - name: mysql
     target_port: 9104
     target_group: db_servers
+  - name: influxdb
+    target_port: 9424
+    target_group: influxdb_servers
 grafana_user: Jns234
 grafana_admin_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -51,3 +54,6 @@ grafana_admin_password: !vault |
           34663237613839626432633239386639653633623734643231363935343134643336643561346334
           3261356336653566660a373165383938363265313735623137376564393534626538336462623239
           3738
+targets: "8.8.8.8,google.com,ttu.ee"
+influx_db_name: influxdb1
+influx_db_port: 8086

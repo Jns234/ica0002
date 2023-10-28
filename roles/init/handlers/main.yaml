@@ -1,0 +1,6 @@
+---
+- name: Restart syslog
+  service:
+    name: rsyslog
+    state: restarted
+    enabled: yes

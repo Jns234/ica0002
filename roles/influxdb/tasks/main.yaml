@@ -1,0 +1,50 @@
+---
+- name: Create influxdb apt key folder
+  ansible.builtin.file:
+    path: /etc/apt/trusted.gpg.d/
+    state: directory
+
+- name: Get influx apt key
+  ansible.builtin.get_url:
+    url: https://repos.influxdata.com/influxdata-archive_compat.key
+    dest: /etc/apt/trusted.gpg.d/influxdata-archive_compat.asc
+
+- name: Add influx repo
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.asc] https://repos.influxdata.com/debian stable main
+    state: present
+    filename: influxdata
+
+- name: install telegraf
+  ansible.builtin.apt:
+    pkg:
+    - telegraf
+    state: present
+
+- name: install Influxdb and telegraf
+  ansible.builtin.apt:
+    deb: https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb
+    state: present
+
+- name: confgiure influxdb
+  ansible.builtin.template:
+    src: ./../templates/influxdb.conf.j2
+    dest: /etc/influxdb/influxdb.conf
+  notify:
+    - Restart influxdb
+
+- name: confgiure telegraf
+  ansible.builtin.template:
+    src: ./../templates/telegraf.conf.j2
+    dest: /etc/telegraf/telegraf.conf
+  notify:
+    - Restart telegraf
+
+- name: start influxdb and telegraf
+  ansible.builtin.service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop:
+    - influxdb
+    - telegraf

@@ -1,5 +1,5 @@
 # Set the command-line arguments to pass to the server.
-ARGS="--web.external-url=http://jns234-2/prometheus"
+ARGS="--web.external-url=http://{{ groups['prometheus_servers'][0]}}/prometheus"
 
 # Prometheus supports the following options:
 #  --config.file="/etc/prometheus/prometheus.yml"

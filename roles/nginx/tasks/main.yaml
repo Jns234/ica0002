@@ -15,14 +15,11 @@
   - Restart nginx
   - Restart nginx-exporter
 
-- name: start nginx
+- name: start nginx and nginx node exporter
   ansible.builtin.service:
-    name: nginx
+    name: "{{ item }}" 
     state: started 
     enabled: yes
-
-- name: start nginx node exporter
-  ansible.builtin.service:
-    name: prometheus-nginx-exporter
-    state: started 
-    enabled: yes
+  loop:
+    - nginx
+    - prometheus-nginx-exporter

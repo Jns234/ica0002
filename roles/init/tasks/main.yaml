@@ -39,3 +39,14 @@
     - ca-certificates=20230311ubuntu0.20.04.1
     state: present
 
+- name: configure syslog
+  template:
+    src: ./../templates/15-telegraf.conf.j2
+    dest: /etc/rsyslog.d/15-telegraf.conf
+  notify: Restart syslog
+
+- name: start syslog
+  service:
+    name: rsyslog
+    state: started
+    enabled: yes

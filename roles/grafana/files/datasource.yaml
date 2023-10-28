@@ -2,11 +2,22 @@
 apiVersion: 1
 
 datasources:
- - name: Prometheus
-   type: prometheus
-   access: proxy
-   orgId: 1
-   url: http://Jns234-2:9090/prometheus/
-   version: 1
-   editable: false
-   uid: "a246ec4c-caab-4441-a51e-69b8db609ab0"
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    orgId: 1
+    url: http://Jns234-2:9090/prometheus/
+    version: 1
+    editable: false
+    uid: "a246ec4c-caab-4441-a51e-69b8db609ab0"
+
+  - name: InfluxDB_v1
+    type: influxdb
+    access: proxy
+    editable: false
+    uid: "da4c6794-cd0c-4ab5-8278-64fe2f73e453"
+    user: grafana
+    url: http://Jns234-2:8086
+    jsonData:
+      dbName: influxdb1
+      httpMode: GET

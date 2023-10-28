@@ -48,4 +48,18 @@
       - grafana
     tags: grafana
 
+  - name: Install influxdb and exporter
+    hosts: influxdb_servers
+    roles:
+      - influxdb
+      - influxdb_exporter
+    tags: influxdb
+
+  - name: Copy Pinger
+    hosts: pinger_servers
+    roles:
+      - pinger
+    tags: pinger
+
+
 
