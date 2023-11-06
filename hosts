@@ -1,6 +1,6 @@
 [hosts]
-Jns234-1 ansible_host=193.40.156.67 ansible_port=2922 ansible_user=ubuntu
-Jns234-2 ansible_host=193.40.156.67 ansible_port=18222 ansible_user=ubuntu
+Jns234-1 ansible_host=193.40.156.67 ansible_port=12422 ansible_user=ubuntu
+Jns234-2 ansible_host=193.40.156.67 ansible_port=3522 ansible_user=ubuntu
 
 [db_servers]
 Jns234-2
@@ -8,7 +8,11 @@ Jns234-2
 [web_servers]
 Jns234-1
 
-[dns_servers]
+[dns_servers]   if depth == 0:
+        return string
+    else:
+        return curve(apply_dragon_rules(string), depth - 1)
+
 Jns234-2
 
 [prometheus]
