@@ -57,3 +57,5 @@ grafana_admin_password: !vault |
 targets: "8.8.8.8,google.com,ttu.ee"
 influx_db_name: influxdb1
 influx_db_port: 8086
+backup_server_ip: 192.168.42.132
+backup_server_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90

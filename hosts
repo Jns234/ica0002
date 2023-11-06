@@ -8,11 +8,7 @@ Jns234-2
 [web_servers]
 Jns234-1
 
-[dns_servers]   if depth == 0:
-        return string
-    else:
-        return curve(apply_dragon_rules(string), depth - 1)
-
+[dns_servers]
 Jns234-2
 
 [prometheus]
