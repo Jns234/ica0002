@@ -7,10 +7,19 @@
     - prometheus-mysqld-exporter
     state: present
 
-- name: copy override mysql conf to mysql conf
-  ansible.builtin.copy:
-    src: ./../files/override.cnf
-    dest: /etc/mysql/mysql.conf.d/
+#- name: copy override mysql conf to mysql conf
+#  ansible.builtin.copy:
+#    src: ./../files/override.cnf
+#    dest: /etc/mysql/mysql.conf.d/
+#    mode: '0644'
+#  notify:
+#  - Restart mysql
+
+- name: config mysql
+  ansible.builtin.template:
+    src: ./../templates/override.cnf.j2
+    dest: /etc/mysql/mysql.conf.d/override.cnf
+    owner: backup
     mode: '0644'
   notify:
   - Restart mysql
@@ -25,6 +34,9 @@
   community.mysql.mysql_db:
     name: "{{ mysql_database }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify:
+    - Reset MySQL source
+    - Reset MySQL replica
 
 - name: Create Mysql user for agama database
   community.mysql.mysql_user:
@@ -59,3 +71,63 @@
     name: prometheus-mysqld-exporter
     state: started 
     enabled: yes
+
+- name: create mysql backup directory and add to user backup
+  ansible.builtin.file:
+    path: /home/backup/mysql
+    state: directory
+    owner: backup
+    group: backup
+    mode: '0755'
+
+- name: create MySQL user backup
+  community.mysql.mysql_user:
+    name: "backup"
+    password: "{{ backup_mysql_password }}"
+    host: "%"
+    priv: "agama.*:LOCK TABLES,SELECT"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify:
+  - Restart mysql
+  no_log: false
+
+- name: add user.cnf
+  ansible.builtin.template:
+    src: ./../templates/.my.cnf.backup.j2
+    dest: /home/backup/.my.cnf
+    owner: backup
+    mode: '0700'
+  notify:
+  - Restart mysql
+  no_log: false
+
+- name: crontab present
+  template:
+    src: ./../templates/mysql-backup.j2
+    dest: /etc/cron.d/mysql-backup
+
+- name: config mysqld exporter
+  ansible.builtin.template:
+    src: ./../templates/prometheus-mysqld-exporter.j2
+    dest: /etc/default/prometheus-mysqld-exporter
+  notify:
+  - Restart mysqld exporter
+
+- name: replication MySQL user
+  community.mysql.mysql_user:
+    name: "replication"
+    password: "{{ replication_mysql_password }}"
+    host: "%"
+    priv: "*.*:REPLICATION SLAVE"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  no_log: true
+
+- name: read only mode
+  community.mysql.mysql_variables:
+    variable: read_only
+    value: "{{ 'OFF' if inventory_hostname == mysql_host else 'ON' }}"
+    mode: persist
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify:
+    - Reset MySQL source
+    - Reset MySQL replica

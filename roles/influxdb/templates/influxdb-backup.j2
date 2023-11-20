@@ -1,0 +1,3 @@
+* * * * * rm -rf /home/backup/influxdb/*; influxd backup -portable -database telegraf /home/backup/influxdb
+0 0 * * *  backup  duplicity --no-encryption full /home/backup/influxdb/ rsync://Jns234@backup.jankang.jk/influxdb
+1 0 * * 6 backup  duplicity --no-encryption incremental /home/backup/influxdb/  rsync://Jns234@backup.jankang.jk/influxdb

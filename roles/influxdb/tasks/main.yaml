@@ -48,3 +48,16 @@
   loop:
     - influxdb
     - telegraf
+
+- name: create backup directory for influxdb and add user to directory
+  ansible.builtin.file:
+    path: /home/backup/influxdb/restore
+    state: directory
+    owner: backup
+    group: backup
+    mode: '0755'
+
+- name: influxdb backup crontab
+  ansible.builtin.template:
+    src: ./../templates/influxdb-backup.j2
+    dest: /etc/cron.d/influxdb-backup

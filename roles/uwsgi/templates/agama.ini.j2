@@ -1,9 +1,7 @@
 [uwsgi]
 chdir = /opt/agama/
 module = agama:app
-{% for host in groups['db_servers'] %}
-env = AGAMA_DATABASE_URI=mysql+pymysql://{{ mysql_user }}:{{ mysql_password }}@{{ hostvars[host]['ansible_hostname'] }}/{{ mysql_database }}
-{% endfor %}
+env = AGAMA_DATABASE_URI=mysql+pymysql://{{ mysql_user }}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}
 plugins = python3
 socket = {{ uswg_addr }}
 uid = agama

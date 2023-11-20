@@ -31,7 +31,7 @@
   ansible.builtin.apt:
     pkg:
     - prometheus-node-exporter
-    state: latest
+    state: present
 
 - name: Have ca-certificates package
   ansible.builtin.apt:
@@ -73,3 +73,16 @@
     dest: /home/backup/.ssh/known_hosts
     owner: backup
     group: backup
+
+- name: create directory restore to backup user
+  ansible.builtin.file:
+    path: /home/backup/restore
+    state: directory
+    owner: backup
+    group: backup
+    mode: 0755
+
+- name: install duplicity
+  ansible.builtin.apt:
+    name: duplicity
+    state: present
