@@ -1,0 +1,37 @@
+---
+# Ensure user agama
+- name: Create user agama
+  ansible.builtin.user:
+    name: agama 
+
+# Ensure directory /opt/agama owned by agama 
+
+- name: Create file and add agama owner
+  ansible.builtin.file:
+    path: /opt/agama/
+    owner: agama
+    state: 'directory'
+    mode: 'u=rwx,g=rwx,o=rwx'
+# all depenedencies for application installed
+
+- name: Install Python 3
+  ansible.builtin.apt:
+    pkg:
+    - python3
+    - python3-flask
+    - python3-flask-sqlalchemy
+    - python3-pymysql 
+    state: present
+
+  
+# application in /opt/agama dir
+
+- name: Download agama.py
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/hudolejev/agama/master/agama.py
+    dest: /opt/agama/
+
+- name: Download dockerfile
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/hudolejev/agama/master/Dockerfile
+    dest: /opt/agama/

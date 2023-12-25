@@ -2,10 +2,13 @@ server {
     listen 80 default_server;
     server_name _;
 
+    {% if inventory_hostname in groups['web_servers'] %}
     location / {
-        uwsgi_pass {{ uswg_addr }};
-        include uwsgi_params;
+        proxy_set_header Host $http_host;
+        proxy_pass http://localhost:{{ agama_docker_port }};
     }
+    {% endif %}
+
 
     {% if inventory_hostname in groups['prometheus'] %}
     location /prometheus {
@@ -16,9 +19,10 @@ server {
     {% if inventory_hostname in groups['grafana_servers'] %}
     location /grafana {
         proxy_set_header Host $http_host;
-        proxy_pass http://jns234-1:3000;
+        proxy_pass http://jns234-1:{{ grafana_port }};
     }
     {% endif %}
+
 }
 
 server {

@@ -1,0 +1,21 @@
+---
+- name: Systemctl daemon-reload
+  shell: "systemctl daemon-reload"
+
+- name: restart keepalived
+  ansible.builtin.service:
+    name: keepalived
+    state: restarted
+    enabled: yes
+
+- name: restart keepalived-exporter
+  ansible.builtin.service:
+    name: keepalived-exporter
+    state: restarted
+    enabled: yes
+
+- name: restart haproxy
+  ansible.builtin.service: 
+    name: haproxy
+    state: restarted
+    enabled: yes

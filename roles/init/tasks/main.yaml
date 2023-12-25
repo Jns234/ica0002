@@ -60,13 +60,6 @@
     ssh_key_bits: 2048
     ssh_key_file: .ssh/id_rsa
 
-- name: create known_hosts file
-  ansible.builtin.file:
-    path: /home/backup/.ssh/known_hosts
-    owner: backup
-    group: backup
-    state: touch
-
 - name: backup user known hosts
   ansible.builtin.template:
     src: ./../templates/known_hosts.j2

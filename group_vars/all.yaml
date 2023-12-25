@@ -46,6 +46,12 @@ prometheus_jobs:
   - name: influxdb
     target_port: 9424
     target_group: influxdb_servers
+  - name: haproxy
+    target_port: 9101
+    target_group: haproxy
+  - name: keepalived
+    target_port: 9165
+    target_group: keepalived
 grafana_user: Jns234
 grafana_admin_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -75,3 +81,10 @@ replication_mysql_password: !vault |
           62356635373365306632353534636232653862313632653231623238643933646163
 node_id: "{{ (ansible_port / 100) | int }}"
 mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
+grafana_port_variable: "{{  (hostvars[groups['hosts'][0]].ansible_port|string)[:-2] ~ '80' }}"
+grafana_docker_port: 3000
+grafana_port: 3001
+agama_docker_port: 8001
+agama_host: http://jns234-1
+agama_ha_port: 88
+ha_stats_port: 9188

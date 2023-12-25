@@ -1,72 +1,54 @@
 ---
 
-- name: Install Grafana prerequisite packages
-  ansible.builtin.apt:
-    pkg:
-    - apt-transport-https
-    - software-properties-common
-    - wget
-    state: present
-
-- name: create apt keyrings folder
+- name: Create grafana directory
   ansible.builtin.file:
-    path: /etc/apt/keyrings/
+    name: /opt/grafana/provisioning/{ item }
     state: directory
-
-- name: add apt GPG
-  ansible.builtin.get_url:
-    url: https://apt.grafana.com/gpg.key
-    dest: /etc/apt/keyrings/grafana.asc
-
-- name: add repo
-  ansible.builtin.apt_repository:
-    repo: deb [signed-by=/etc/apt/keyrings/grafana.asc] https://apt.grafana.com stable main
-    state: present
-    filename: grafana
-
-- name: install Grafana
-  ansible.builtin.apt:
-    pkg:
-    - grafana
-    state: present
-
-- name: configure Grafana
-  ansible.builtin.template:
-    src: ./../templates/grafana.ini.j2
-    dest: /etc/grafana/grafana.ini
-  no_log: yes
-  notify:
-  - Restart Grafana
-
-- name: copy Grafana Dashboard json
-  ansible.builtin.copy:
-    src: ./../files/{{ item }}
-    dest: /var/lib/grafana/dashboards/
+    recurse: true
   loop:
-    - main.json
-    - syslog.json
-    - mysql.json
-  notify:
-  - Restart Grafana
+    - dashboards
+    - datasources
 
 - name: copy Grafana Datasource yaml
   ansible.builtin.copy:
     src: ./../files/datasource.yaml
-    dest: /etc/grafana/provisioning/datasources/
+    dest: /opt/grafana/provisioning/datasources/
   notify:
-  - Restart Grafana
+    - Restart Grafana Container
 
-- name: copy Grafana Dashboards yaml
+- name: configure Grafana
+  ansible.builtin.template:
+    src: ./../templates/grafana.ini.j2
+    dest: /opt/grafana/grafana.ini
+  no_log: yes
+  notify:
+    - Restart Grafana Container
+
+- name: copy Grafana Dashboard json
   ansible.builtin.copy:
-    src: ./../files/dashboards.yaml
-    dest: /etc/grafana/provisioning/dashboards/
+    src: ./../files/{{ item }}
+    dest: /opt/grafana/provisioning/dashboards/
+  loop:
+    - main.json
+    - syslog.json
+    - mysql.json
+    - dashboards.yaml
   notify:
-  - Restart Grafana
+    - Restart Grafana Container
+
+- name: copy Grafana Datasource yaml
+  ansible.builtin.copy:
+    src: ./../files/datasource.yaml
+    dest: /opt/grafana/provisioning/datasources/
+  notify:
+    - Restart Grafana Container
 
 
-- name: Grafana started
-  ansible.builtin.service:
-    name: grafana-server
-    state: started
-    enabled: true
-
+- name: Grafana container
+  ansible.builtin.docker_container:
+    name: grafana
+    image: grafana/grafana
+    volumes: /opt/grafana:/etc/grafana
+    published_ports: "{{ grafana_port }}:3000"
+  notify:
+    - Restart Grafana Container

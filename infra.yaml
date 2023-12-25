@@ -11,11 +11,17 @@
       - mysql
     tags: db 
 
+  - name: Install docker and dependencies, ensure docker started
+    hosts: all
+    roles: 
+      - docker
+    tags: docker
+
   - name: update and setup agama
-    hosts: web_servers
+    hosts: all
     roles:
       - agama
-      - uwsgi
+#      - uwsgi
     tags: web
 
   - name: setup bind9
@@ -31,7 +37,7 @@
     tags: dns_resolv
 
   - name: reconfig nginx
-    hosts: web_servers
+    hosts: all
     roles:
       - nginx
     tags: nginx
@@ -42,11 +48,11 @@
       - prometheus
     tags: prom
 
-  - name: Install Grafana
-    hosts: grafana_servers
-    roles:
-      - grafana
-    tags: grafana
+#  - name: Install Grafana
+#    hosts: grafana_servers
+#    roles:
+#      - grafana
+#    tags: grafana
 
   - name: Install influxdb and exporter
     hosts: influxdb_servers
@@ -61,5 +67,22 @@
       - pinger
     tags: pinger
 
+  - name: Install Grafana
+    hosts: grafana_servers
+    roles:
+      - grafana
+    tags: grafana
+
+  - name: Install Keepalived
+    hosts: keepalived
+    roles:
+      - keepalived
+    tags: keepalived
+
+  - name: Install haproxy
+    hosts: haproxy
+    roles:
+      - haproxy
+    tags: haproxy
 
 
