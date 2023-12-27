@@ -20,6 +20,12 @@
   notify: 
     - restart haproxy
 
+- name: Start haproxy
+  ansible.builtin.service:
+    name: haproxy
+    state: started
+    enabled: yes
+
 - name: Start service haproxy-exporter
   ansible.builtin.service:
     name: prometheus-haproxy-exporter

@@ -3,6 +3,7 @@
   ansible.builtin.apt:
     pkg:
     - bind9
+    - python3-dnspython
     - prometheus-bind-exporter
     state: latest
 
@@ -12,23 +13,69 @@
     dest: /etc/bind/named.conf.options
   notify:
   - Restart bind9
+  - Reload rndc
 
-- name: Copy zone to machine
-  ansible.builtin.template:
-    src: ./../templates/zone.j2
-    dest: /var/lib/bind/db.jankang.jk
-  notify:
-  - Restart rndc
-
-- name: Copy zone config
+- name: Copy conf.options to machine
   ansible.builtin.template:
     src: ./../templates/named.conf.local.j2
-    dest: /etc/bind/named.conf.local     
+    dest: /etc/bind/named.conf.local
   notify:
   - Restart bind9
+  - Reload rndc
+
+- name: Copy zone to MASTER machine
+  when: inventory_hostname in groups['dns_master']
+  ansible.builtin.template:
+    src: ./../templates/zone.j2
+    dest: /var/cache/bind/db.jankang.jk
+  notify:
+  - Reload rndc
+
+- name: Copy reversed zone to MASTER machine
+  when: inventory_hostname in groups['dns_master']
+  ansible.builtin.template:
+    src: ./../templates/zone.revresed.j2
+    dest: /var/cache/bind/db.reversed
+  notify:
+  - Reload rndc
+
 
 - name: Bind exporter is started
   ansible.builtin.service:
     name: prometheus-bind-exporter
+    state: started
+    enabled: yes
+
+- name: Add A records
+  when: inventory_hostname == groups['dns_master'][0]
+  community.general.nsupdate:
+    key_name: "dns_update_key"
+    key_algorithm: "hmac-sha256"
+    key_secret: "{{dns_update_key}}"
+    server: "localhost"
+    zone: "{{ domain_dotles }}."
+    record: "{{ item.key }}.{{ domain_dotles }}."
+    type: "A"
+    value: "{{ item.value }}"
+  loop: "{{ a_records | dict2items }}"
+  no_log: false
+
+- name: Add CNAME records
+  when: inventory_hostname == groups['dns_master'][0]
+  community.general.nsupdate:
+    key_name: "dns_update_key"
+    key_algorithm: "hmac-sha256"
+    key_secret: "{{ dns_update_key }}"
+    server: "localhost"
+    zone: "{{ domain_dotles }}."
+    record: "{{ item.key }}.{{ domain_dotles }}."
+    type: "CNAME"
+    value: "{{ item.value }}.{{ domain_dotles }}."
+  loop: "{{ cname_records | dict2items }}"
+  no_log: false
+
+- name: Bind9 is started
+  ansible.builtin.service:
+    name: bind9
     state: started
     enabled: yes

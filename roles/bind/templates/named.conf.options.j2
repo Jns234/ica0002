@@ -1,18 +1,28 @@
-acl nets { {{ local_ip_self }}; {{local_ip_second }}; };
+acl nets { {{ local_ip_self }}; {{ local_ip_second }}; {{ container_network }};};
 
 options {
 
-directory "/var/lib/bind";
+directory "/var/cache/bind";
 
 forwarders {
     {% for forwarder in dns_forwarders %}
     {{ forwarder }};
     {% endfor %}
 };
-allow-query { nets; };
+    allow-query { nets; };
     dnssec-validation no;
 };
 
 statistics-channels {
   inet {{ bind_exporter_addr}} port {{ bind_exporter_port}} allow { {{ bind_exporter_addr}}; };
+};
+
+key "dns_transfer_key" {
+        algorithm hmac-sha256;
+        secret "{{ dns_transfer_key }}";
+};
+
+key "dns_update_key" {
+        algorithm hmac-sha256;
+        secret "{{ dns_update_key }}";
 };

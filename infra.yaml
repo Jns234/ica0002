@@ -73,16 +73,17 @@
       - grafana
     tags: grafana
 
+  - name: Install haproxy
+    hosts: haproxy
+    roles:
+      - haproxy
+    tags: haproxy
+
   - name: Install Keepalived
     hosts: keepalived
     roles:
       - keepalived
     tags: keepalived
 
-  - name: Install haproxy
-    hosts: haproxy
-    roles:
-      - haproxy
-    tags: haproxy
 
 

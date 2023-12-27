@@ -3,6 +3,7 @@
   ansible.builtin.service:
     name: systemd-resolved
     state: stopped
+    enabled: no
 
 - name: Copy manual resolve to machine
   ansible.builtin.template:

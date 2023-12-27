@@ -38,3 +38,10 @@ listen agama
      server agama12 Jns234-1:8002 check
      server agama21 Jns234-2:8001 check
      server agama22 Jns234-2:8002 check
+
+
+listen stats
+    bind :9188
+    stats enable
+    stats uri /stats
+    stats refresh 5s
