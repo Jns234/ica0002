@@ -12,6 +12,7 @@
     dest: /etc/haproxy/haproxy.cfg
   notify: 
     - restart haproxy
+    - restart haproxy exporter
 
 - name: Add args
   ansible.builtin.template:
@@ -19,6 +20,7 @@
     dest: /etc/default/prometheus-haproxy-exporter
   notify: 
     - restart haproxy
+    - restart haproxy exporter
 
 - name: Start haproxy
   ansible.builtin.service:

@@ -39,12 +39,14 @@
   notify:
   - Reload rndc
 
-
 - name: Bind exporter is started
   ansible.builtin.service:
     name: prometheus-bind-exporter
     state: started
     enabled: yes
+
+- name: Flush!
+  ansible.builtin.meta: flush_handlers
 
 - name: Add A records
   when: inventory_hostname == groups['dns_master'][0]
@@ -58,7 +60,7 @@
     type: "A"
     value: "{{ item.value }}"
   loop: "{{ a_records | dict2items }}"
-  no_log: false
+  no_log: true
 
 - name: Add CNAME records
   when: inventory_hostname == groups['dns_master'][0]
@@ -72,7 +74,7 @@
     type: "CNAME"
     value: "{{ item.value }}.{{ domain_dotles }}."
   loop: "{{ cname_records | dict2items }}"
-  no_log: false
+  no_log: true
 
 - name: Bind9 is started
   ansible.builtin.service:

@@ -17,7 +17,7 @@ datasources:
     editable: false
     uid: "da4c6794-cd0c-4ab5-8278-64fe2f73e453"
     user: grafana
-    url: http://Jns234-2:8086
+    url: http://Jns234-3:8086
     jsonData:
       dbName: influxdb1
       httpMode: GET

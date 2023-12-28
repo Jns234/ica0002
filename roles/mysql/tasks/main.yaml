@@ -7,14 +7,6 @@
     - prometheus-mysqld-exporter
     state: present
 
-#- name: copy override mysql conf to mysql conf
-#  ansible.builtin.copy:
-#    src: ./../files/override.cnf
-#    dest: /etc/mysql/mysql.conf.d/
-#    mode: '0644'
-#  notify:
-#  - Restart mysql
-
 - name: config mysql
   ansible.builtin.template:
     src: ./../templates/override.cnf.j2
@@ -89,7 +81,7 @@
     login_unix_socket: /var/run/mysqld/mysqld.sock
   notify:
   - Restart mysql
-  no_log: false
+  no_log: true
 
 - name: add user.cnf
   ansible.builtin.template:
@@ -99,7 +91,7 @@
     mode: '0700'
   notify:
   - Restart mysql
-  no_log: false
+  no_log: true
 
 - name: crontab present
   template:

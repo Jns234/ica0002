@@ -1,0 +1,4 @@
+sudo -i rm -r /etc/bind/named.conf.options;
+sudo -i rm -r /etc/bind/named.conf.local;
+sudo -i rm -r /var/cache/bind/db.reversed;
+sudo -i rm -r /var/cache/bind/db.jankang.jk

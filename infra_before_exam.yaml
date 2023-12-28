@@ -9,7 +9,20 @@
     hosts: db_servers
     roles:
       - mysql
-    tags: db
+    tags: db 
+
+  - name: Install docker and dependencies, ensure docker started
+    hosts: all
+    roles: 
+      - docker
+    tags: docker
+
+  - name: update and setup agama
+    hosts: all
+    roles:
+      - agama
+#      - uwsgi
+    tags: web
 
   - name: setup bind9
     hosts: dns_servers
@@ -22,18 +35,6 @@
     roles:
       - bind_resolv
     tags: dns_resolv
-
-  - name: Install docker and dependencies, ensure docker started
-    hosts: all
-    roles: 
-      - docker
-    tags: docker
-
-  - name: update and setup agama
-    hosts: web_servers
-    roles:
-      - agama
-    tags: web
 
   - name: reconfig nginx
     hosts: all

@@ -1,10 +1,11 @@
 [hosts]
-Jns234-1 ansible_host=193.40.156.67 ansible_port=31722 ansible_user=ubuntu
-Jns234-2 ansible_host=193.40.156.67 ansible_port=37522 ansible_user=ubuntu
+Jns234-1 ansible_host=193.40.156.67 ansible_port=15822 ansible_user=ubuntu
+Jns234-2 ansible_host=193.40.156.67 ansible_port=1622 ansible_user=ubuntu
+Jns234-3 ansible_host=193.40.156.67 ansible_port=18422 ansible_user=ubuntu
 
 [db_servers]
-Jns234-2
 Jns234-1
+Jns234-2
 
 [web_servers]
 Jns234-1
@@ -13,22 +14,27 @@ Jns234-2
 [dns_servers]
 Jns234-1
 Jns234-2
+Jns234-3
 
 [prometheus]
-Jns234-2
+Jns234-3
 
 [prometheus_servers]
+Jns234-3
 Jns234-1
 Jns234-2
 
 [grafana_servers]
-Jns234-1
+Jns234-3
 
 [influxdb_servers]
-Jns234-2
+Jns234-3
+
+[telegraf_servers]
+Jns234-3
 
 [pinger_servers]
-Jns234-1
+Jns234-3
 
 [haproxy]
 Jns234-1
@@ -39,7 +45,11 @@ Jns234-1
 Jns234-2
 
 [dns_master]
-Jns234-1
+Jns234-3
 
 [dns_slaves]
 Jns234-2
+Jns234-1
+
+[nginx_servers]
+Jns234-3

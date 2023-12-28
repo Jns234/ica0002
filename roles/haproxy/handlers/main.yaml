@@ -4,3 +4,9 @@
     name: haproxy
     state: restarted
     enabled: yes
+
+- name: restart haproxy exporter
+  ansible.builtin.service: 
+    name: prometheus-haproxy-exporter
+    state: restarted
+    enabled: yes

@@ -51,7 +51,7 @@ prometheus_jobs:
     target_port: 9424
     target_group: influxdb_servers
   - name: haproxy
-    target_port: "{{ ha_stats_port }}"
+    target_port: 9101
     target_group: haproxy
   - name: keepalived
     target_port: 9165
@@ -123,3 +123,5 @@ cname_records:
     prometheus: "{{ groups['prometheus_servers'][0] }}"
     web1: "{{ groups['web_servers'][0] }}"
     web2: "{{ groups['web_servers'][1] }}"
+
+nr_of_agama_containers_per_vm: 2
