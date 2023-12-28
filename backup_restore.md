@@ -8,7 +8,8 @@ Restore MySQL data from the backup:
     
     mysql agama < /home/backup/restore/agama.sql
 
-Restore Telegraf data from the backup:
+Restore Telegraf data from the backup, should be done on host that houses influxdb:
+
 
     sudo -u backup  duplicity --no-encryption restore rsync://Jns234@backup.jankang.jk/influxdb /home/backup/restore/influxdb
 
