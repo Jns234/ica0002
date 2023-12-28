@@ -18,9 +18,12 @@ vrrp_instance agama {
     priority 100
     {% endif %}
     advert_int 1                            
-    virtual_ipaddress {                     
-        192.168.100.{{hostvars['Jns234-1']['ansible_default_ipv4']['address'].split('.')[3]}}/24            
-        192.168.101.{{hostvars['Jns234-1']['ansible_default_ipv4']['address'].split('.')[3]}}/24            
+    virtual_ipaddress {      
+        {% if hostvars['Jns234-1']['ansible_default_ipv4']['address'].split('.')[2] == "42" %}               
+        192.168.100.{{hostvars['Jns234-1']['ansible_default_ipv4']['address'].split('.')[3]}}/24
+        {% else%}         
+        192.168.101.{{hostvars['Jns234-1']['ansible_default_ipv4']['address'].split('.')[3]}}/24        
+        {% endif%}    
     }
     unicast_peer {                          
         {% for vm in groups['keepalived']  %}

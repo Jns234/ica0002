@@ -59,6 +59,7 @@
     generate_ssh_key: yes
     ssh_key_bits: 2048
     ssh_key_file: .ssh/id_rsa
+  no_log: true
 
 - name: backup user known hosts
   ansible.builtin.template:
@@ -66,6 +67,8 @@
     dest: /home/backup/.ssh/known_hosts
     owner: backup
     group: backup
+  no_log: true
+
 
 - name: create directory restore to backup user
   ansible.builtin.file:

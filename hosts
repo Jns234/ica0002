@@ -1,7 +1,7 @@
 [hosts]
-Jns234-1 ansible_host=193.40.156.67 ansible_port=15822 ansible_user=ubuntu
-Jns234-2 ansible_host=193.40.156.67 ansible_port=1622 ansible_user=ubuntu
-Jns234-3 ansible_host=193.40.156.67 ansible_port=18422 ansible_user=ubuntu
+Jns234-1 ansible_host=193.40.156.67 ansible_port=19322 ansible_user=ubuntu
+Jns234-2 ansible_host=193.40.156.67 ansible_port=8722 ansible_user=ubuntu
+Jns234-3 ansible_host=193.40.156.67 ansible_port=9522 ansible_user=ubuntu
 
 [db_servers]
 Jns234-1
@@ -53,3 +53,7 @@ Jns234-1
 
 [nginx_servers]
 Jns234-3
+
+[nginx:children]
+web_servers
+nginx_servers

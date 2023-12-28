@@ -11,14 +11,20 @@
   ansible.builtin.template:
     src: ./../templates/named.conf.options.j2
     dest: /etc/bind/named.conf.options
+    owner: bind
+    mode: '0755'
+  no_log: true
   notify:
   - Restart bind9
   - Reload rndc
 
-- name: Copy conf.options to machine
+- name: Copy conf.options.local to machine
   ansible.builtin.template:
     src: ./../templates/named.conf.local.j2
     dest: /etc/bind/named.conf.local
+    owner: bind
+    mode: '0755'
+  no_log: true
   notify:
   - Restart bind9
   - Reload rndc
@@ -28,6 +34,9 @@
   ansible.builtin.template:
     src: ./../templates/zone.j2
     dest: /var/cache/bind/db.jankang.jk
+    owner: bind
+    mode: '0755'
+    force: no
   notify:
   - Reload rndc
 
@@ -36,6 +45,9 @@
   ansible.builtin.template:
     src: ./../templates/zone.revresed.j2
     dest: /var/cache/bind/db.reversed
+    owner: bind
+    mode: '0755'
+    force: no
   notify:
   - Reload rndc
 
