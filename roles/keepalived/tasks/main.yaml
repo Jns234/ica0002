@@ -41,7 +41,7 @@
     src: ./../templates/keepalivedScript.j2
     dest: /home/keepalivedScript/keepalivedScript
     owner: keepalivedScript
-    mode: 0755
+    mode: 0500
 
 - name: Download keepalived exporter
   ansible.builtin.unarchive:

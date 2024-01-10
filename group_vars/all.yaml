@@ -31,6 +31,7 @@ domain: jankang.jk.
 domain_dotles: jankang.jk
 reverse_domain: 168.192.in-addr.arpa
 bind_exporter_addr: 127.0.0.1
+localhost: localhost
 bind_exporter_port: 8053
 prometheus_servers_port: 9090
 prometheus_metrics_port: 9100
@@ -43,7 +44,7 @@ prometheus_jobs:
     target_group: dns_servers
   - name: nginx
     target_port: 9113
-    target_group: web_servers
+    target_group: nginx
   - name: mysql
     target_port: 9104
     target_group: db_servers
