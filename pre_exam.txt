@@ -1,4 +1,4 @@
-Wed Jan 10 10:14:09 EET 2024
+Wed Jan 10 16:34:01 EET 2024
 + hostname
 Users-MacBook-Pro.local
 + /Users/user/ansible-venv/bin/ansible-playbook infra.yaml --diff
@@ -7,37 +7,17 @@ PLAY [Initial setup] ***********************************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [Jns234-2]
-ok: [Jns234-3]
 ok: [Jns234-1]
+ok: [Jns234-3]
 
 TASK [init : Update APT cache] *************************************************
+ok: [Jns234-2]
 ok: [Jns234-1]
-changed: [Jns234-2]
 changed: [Jns234-3]
 
 TASK [init : have prometheus node exporter on all machines] ********************
-The following additional packages will be installed:
-  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
-  moreutils prometheus-node-exporter-collectors smartmontools
-Suggested packages:
-  gsmartcontrol smart-notifier mailx | mailutils
-The following NEW packages will be installed:
-  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
-  moreutils prometheus-node-exporter prometheus-node-exporter-collectors
-  smartmontools
-0 upgraded, 8 newly installed, 0 to remove and 93 not upgraded.
-changed: [Jns234-1]
-The following additional packages will be installed:
-  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
-  moreutils prometheus-node-exporter-collectors smartmontools
-Suggested packages:
-  gsmartcontrol smart-notifier mailx | mailutils
-The following NEW packages will be installed:
-  libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
-  moreutils prometheus-node-exporter prometheus-node-exporter-collectors
-  smartmontools
-0 upgraded, 8 newly installed, 0 to remove and 267 not upgraded.
-changed: [Jns234-2]
+ok: [Jns234-2]
+ok: [Jns234-1]
 The following additional packages will be installed:
   libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
   moreutils prometheus-node-exporter-collectors smartmontools
@@ -51,33 +31,18 @@ The following NEW packages will be installed:
 changed: [Jns234-3]
 
 TASK [init : Have ca-certificates package] *************************************
+ok: [Jns234-2]
 ok: [Jns234-1]
 The following packages will be upgraded:
   ca-certificates
 1 upgraded, 0 newly installed, 0 to remove and 266 not upgraded.
 changed: [Jns234-3]
-The following packages will be upgraded:
-  ca-certificates
-1 upgraded, 0 newly installed, 0 to remove and 266 not upgraded.
-changed: [Jns234-2]
 
 TASK [init : configure syslog] *************************************************
+ok: [Jns234-2]
+ok: [Jns234-1]
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpaypca7d4/15-telegraf.conf.j2
-@@ -0,0 +1 @@
-+action(type="omfwd" Protocol="udp" Target="Jns234-3" Port="6514" Template="RSYSLOG_SyslogProtocol23Format")
-\ No newline at end of file
-
-changed: [Jns234-2]
---- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpi6f4r5jj/15-telegraf.conf.j2
-@@ -0,0 +1 @@
-+action(type="omfwd" Protocol="udp" Target="Jns234-3" Port="6514" Template="RSYSLOG_SyslogProtocol23Format")
-\ No newline at end of file
-
-changed: [Jns234-1]
---- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp3srea1z8/15-telegraf.conf.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmp67rq0hcc/15-telegraf.conf.j2
 @@ -0,0 +1 @@
 +action(type="omfwd" Protocol="udp" Target="Jns234-3" Port="6514" Template="RSYSLOG_SyslogProtocol23Format")
 \ No newline at end of file
@@ -85,49 +50,23 @@ changed: [Jns234-1]
 changed: [Jns234-3]
 
 TASK [init : start syslog] *****************************************************
+ok: [Jns234-3]
 ok: [Jns234-2]
 ok: [Jns234-1]
-ok: [Jns234-3]
 
 TASK [init : backup user] ******************************************************
-changed: [Jns234-2]
+ok: [Jns234-2]
+ok: [Jns234-1]
 changed: [Jns234-3]
-changed: [Jns234-1]
 
 TASK [init : backup user known hosts] ******************************************
-changed: [Jns234-2]
-changed: [Jns234-1]
+ok: [Jns234-2]
+ok: [Jns234-1]
 changed: [Jns234-3]
 
 TASK [init : create directory restore to backup user] **************************
---- before
-+++ after
-@@ -1,6 +1,6 @@
- {
--    "group": 0,
--    "owner": 0,
-+    "group": 34,
-+    "owner": 34,
-     "path": "/home/backup/restore",
--    "state": "absent"
-+    "state": "directory"
- }
-
-changed: [Jns234-2]
---- before
-+++ after
-@@ -1,6 +1,6 @@
- {
--    "group": 0,
--    "owner": 0,
-+    "group": 34,
-+    "owner": 34,
-     "path": "/home/backup/restore",
--    "state": "absent"
-+    "state": "directory"
- }
-
-changed: [Jns234-1]
+ok: [Jns234-1]
+ok: [Jns234-2]
 --- before
 +++ after
 @@ -1,6 +1,6 @@
@@ -144,28 +83,8 @@ changed: [Jns234-1]
 changed: [Jns234-3]
 
 TASK [init : install duplicity] ************************************************
-The following additional packages will be installed:
-  librsync2 python3-bcrypt python3-fasteners python3-future python3-lockfile
-  python3-monotonic python3-paramiko
-Suggested packages:
-  python3-boto ncftp lftp tahoe-lafs python3-swiftclient python3-pip par2
-  python-future-doc python-lockfile-doc python3-gssapi
-The following NEW packages will be installed:
-  duplicity librsync2 python3-bcrypt python3-fasteners python3-future
-  python3-lockfile python3-monotonic python3-paramiko
-0 upgraded, 8 newly installed, 0 to remove and 93 not upgraded.
-changed: [Jns234-1]
-The following additional packages will be installed:
-  librsync2 python3-bcrypt python3-fasteners python3-future python3-lockfile
-  python3-monotonic python3-paramiko
-Suggested packages:
-  python3-boto ncftp lftp tahoe-lafs python3-swiftclient python3-pip par2
-  python-future-doc python-lockfile-doc python3-gssapi
-The following NEW packages will be installed:
-  duplicity librsync2 python3-bcrypt python3-fasteners python3-future
-  python3-lockfile python3-monotonic python3-paramiko
-0 upgraded, 8 newly installed, 0 to remove and 266 not upgraded.
-changed: [Jns234-2]
+ok: [Jns234-2]
+ok: [Jns234-1]
 The following additional packages will be installed:
   librsync2 python3-bcrypt python3-fasteners python3-future python3-lockfile
   python3-monotonic python3-paramiko
@@ -179,17 +98,16 @@ The following NEW packages will be installed:
 changed: [Jns234-3]
 
 RUNNING HANDLER [init : Restart syslog] ****************************************
-changed: [Jns234-2]
 changed: [Jns234-3]
-changed: [Jns234-1]
 
 PLAY [Database server] *********************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [mysql : Update the repository cache and update package "mysql-server" to latest version] ***
+ok: [Jns234-1]
 The following additional packages will be installed:
   daemon libcgi-fast-perl libcgi-pm-perl libencode-locale-perl
   libevent-core-2.1-7 libevent-pthreads-2.1-7 libfcgi-perl libhtml-parser-perl
@@ -208,52 +126,21 @@ The following NEW packages will be installed:
   liburi-perl mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-client-8.0
   mysql-client-core-8.0 mysql-common mysql-server mysql-server-8.0
   mysql-server-core-8.0 prometheus-mysqld-exporter python3-pymysql
-0 upgraded, 27 newly installed, 0 to remove and 266 not upgraded.
+0 upgraded, 27 newly installed, 0 to remove and 264 not upgraded.
 changed: [Jns234-2]
-The following additional packages will be installed:
-  daemon libcgi-fast-perl libcgi-pm-perl libencode-locale-perl
-  libevent-core-2.1-7 libevent-pthreads-2.1-7 libfcgi-perl libhtml-parser-perl
-  libhtml-tagset-perl libhtml-template-perl libhttp-date-perl
-  libhttp-message-perl libio-html-perl liblwp-mediatypes-perl libmecab2
-  liburi-perl mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-client-8.0
-  mysql-client-core-8.0 mysql-common mysql-server-8.0 mysql-server-core-8.0
-Suggested packages:
-  libdata-dump-perl libipc-sharedcache-perl libwww-perl mailx tinyca
-  python-pymysql-doc
-The following NEW packages will be installed:
-  daemon libcgi-fast-perl libcgi-pm-perl libencode-locale-perl
-  libevent-core-2.1-7 libevent-pthreads-2.1-7 libfcgi-perl libhtml-parser-perl
-  libhtml-tagset-perl libhtml-template-perl libhttp-date-perl
-  libhttp-message-perl libio-html-perl liblwp-mediatypes-perl libmecab2
-  liburi-perl mecab-ipadic mecab-ipadic-utf8 mecab-utils mysql-client-8.0
-  mysql-client-core-8.0 mysql-common mysql-server mysql-server-8.0
-  mysql-server-core-8.0 prometheus-mysqld-exporter python3-pymysql
-0 upgraded, 27 newly installed, 0 to remove and 93 not upgraded.
-changed: [Jns234-1]
 
 TASK [mysql : config mysql] ****************************************************
+ok: [Jns234-1]
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmplvspzytb/override.cnf.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpm6boh0pm/override.cnf.j2
 @@ -0,0 +1,7 @@
 +[mysqld]
-+bind-address = 0.0.0.0
++bind-address = *
 +default-authentication-plugin=mysql_native_password
 +log-bin = /var/log/mysql/mysql-bin.log
 +relay-log = /var/log/mysql/mysql-relay.log
 +replicate-do-db = agama
-+server-id = 193
-
-changed: [Jns234-1]
---- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmputyxb2rg/override.cnf.j2
-@@ -0,0 +1,7 @@
-+[mysqld]
-+bind-address = 0.0.0.0
-+default-authentication-plugin=mysql_native_password
-+log-bin = /var/log/mysql/mysql-bin.log
-+relay-log = /var/log/mysql/mysql-relay.log
-+replicate-do-db = agama
-+server-id = 87
++server-id = 95
 
 changed: [Jns234-2]
 
@@ -262,26 +149,27 @@ ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [mysql : MySQL database] **************************************************
+ok: [Jns234-1]
 changed: [Jns234-2]
-changed: [Jns234-1]
 
 TASK [mysql : Create Mysql user for agama database] ****************************
-changed: [Jns234-1]
+ok: [Jns234-1]
 changed: [Jns234-2]
 
 TASK [mysql : Create Mysql user for mysqld exporter] ***************************
-changed: [Jns234-1]
+ok: [Jns234-1]
 changed: [Jns234-2]
 
 TASK [mysql : configure mysqld] ************************************************
+ok: [Jns234-1]
 changed: [Jns234-2]
-changed: [Jns234-1]
 
 TASK [mysql : make sure mysql-exporter is started] *****************************
+ok: [Jns234-1]
 changed: [Jns234-2]
-changed: [Jns234-1]
 
 TASK [mysql : create mysql backup directory and add to user backup] ************
+ok: [Jns234-1]
 --- before
 +++ after
 @@ -1,6 +1,6 @@
@@ -296,33 +184,19 @@ TASK [mysql : create mysql backup directory and add to user backup] ************
  }
 
 changed: [Jns234-2]
---- before
-+++ after
-@@ -1,6 +1,6 @@
- {
--    "group": 0,
--    "owner": 0,
-+    "group": 34,
-+    "owner": 34,
-     "path": "/home/backup/mysql",
--    "state": "absent"
-+    "state": "directory"
- }
-
-changed: [Jns234-1]
 
 TASK [mysql : create MySQL user backup] ****************************************
+ok: [Jns234-1]
 changed: [Jns234-2]
-changed: [Jns234-1]
 
 TASK [mysql : add user.cnf] ****************************************************
-changed: [Jns234-1]
+ok: [Jns234-1]
 changed: [Jns234-2]
 
 TASK [mysql : crontab present] *************************************************
 changed: [Jns234-2]
---- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp04ovjis5/mysql-backup.j2
+--- before: /etc/cron.d/mysql-backup
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpsge48css/mysql-backup.j2
 @@ -0,0 +1,3 @@
 +* * * * * backup mysqldump agama > /home/backup/mysql/agama.sql
 +0 0 * * *  backup  duplicity --no-encryption full /home/backup/mysql/ rsync://Jns234@backup.jankang.jk/mysql
@@ -331,8 +205,9 @@ changed: [Jns234-2]
 changed: [Jns234-1]
 
 TASK [mysql : config mysqld exporter] ******************************************
+ok: [Jns234-1]
 --- before: /etc/default/prometheus-mysqld-exporter
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpcwjbrip4/prometheus-mysqld-exporter.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmp1j7b3pza/prometheus-mysqld-exporter.j2
 @@ -1,120 +1 @@
 -# By default the connection string will be read from
 -# $HOME/my.cnf or from the file specified with the -config.my-cnf parameter.
@@ -457,148 +332,20 @@ TASK [mysql : config mysqld exporter] ******************************************
 +ARGS="--collect.slave_status"
 
 changed: [Jns234-2]
---- before: /etc/default/prometheus-mysqld-exporter
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpx8erabkj/prometheus-mysqld-exporter.j2
-@@ -1,120 +1 @@
--# By default the connection string will be read from
--# $HOME/my.cnf or from the file specified with the -config.my-cnf parameter.
--
--# To set a connection string from the environment instead, uncomment one of the
--# following lines.
--
--# Using UNIX domain sockets and authentication:
--# DATA_SOURCE_NAME="prometheus:nopassword@unix(/run/mysqld/mysqld.sock)/"
--
--# Using a TCP connection and password authentication:
--# DATA_SOURCE_NAME="login:password@(hostname:port)/dbname"
--
--# Note the user must be granted enough privileges for the exporter to run.
--# Example to create a user to connect with the UNIX socket:
--#
--#  CREATE USER IF NOT EXISTS 'prometheus'@'localhost' IDENTIFIED VIA unix_socket;
--#  GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'prometheus'@'localhost';
--
--# Set the command-line arguments to pass to the exporter.
--# ARGS='-config.my-cnf /etc/mysql/debian.cnf'
--
--# Usage of prometheus-mysqld-exporter:
--#   -collect.auto_increment.columns
--#     	Collect auto_increment columns and max values from information_schema
--#  --exporter.lock_wait_timeout=2
--#       Set a lock_wait_timeout on the connection to avoid long metadata
--#       locking.
--#  --exporter.log_slow_filter
--#       Add a log_slow_filter to avoid slow query logging of scrapes. NOTE: Not
--#       supported by Oracle MySQL.
--#  --collect.heartbeat.database="heartbeat"
--#       Database from where to collect heartbeat data
--#  --collect.heartbeat.table="heartbeat"
--#       Table from where to collect heartbeat data
--#  --collect.info_schema.processlist.min_time=0
--#       Minimum time a thread must be in each state to be counted
--#  --collect.info_schema.tables.databases="*"
--#       The list of databases to collect table stats for, or '*' for all
--#  --collect.perf_schema.eventsstatements.limit=250
--#       Limit the number of events statements digests by response time
--#  --collect.perf_schema.eventsstatements.timelimit=86400
--#       Limit how old the 'last_seen' events statements can be, in seconds
--#  --collect.perf_schema.eventsstatements.digest_text_limit=120
--#       Maximum length of the normalized statement text
--#  --collect.perf_schema.file_instances.filter=".*"
--#       RegEx file_name filter for performance_schema.file_summary_by_instance
--#  --collect.perf_schema.file_instances.remove_prefix="/var/lib/mysql/"
--#       Remove path prefix in performance_schema.file_summary_by_instance
--#  --web.listen-address=":9104"
--#       Address to listen on for web interface and telemetry.
--#  --web.telemetry-path="/metrics"
--#       Path under which to expose metrics.
--#  --config.my-cnf="$HOME/.my.cnf"
--#       Path to .my.cnf file to read MySQL credentials from.
--#  --collect.global_variables
--#       Collect from SHOW GLOBAL VARIABLES
--#  --collect.slave_status
--#       Collect from SHOW SLAVE STATUS
--#  --collect.info_schema.processlist
--#       Collect current thread state counts from the
--#       information_schema.processlist
--#  --collect.info_schema.tables
--#       Collect metrics from information_schema.tables
--#  --collect.info_schema.innodb_tablespaces
--#       Collect metrics from information_schema.innodb_sys_tablespaces
--#  --collect.info_schema.innodb_metrics
--#       Collect metrics from information_schema.innodb_metrics
--#  --collect.auto_increment.columns
--#       Collect auto_increment columns and max values from information_schema
--#  --collect.global_status
--#       Collect from SHOW GLOBAL STATUS
--#  --collect.perf_schema.tableiowaits
--#       Collect metrics from performance_schema.table_io_waits_summary_by_table
--#  --collect.perf_schema.indexiowaits
--#       Collect metrics from
--#       performance_schema.table_io_waits_summary_by_index_usage
--#  --collect.perf_schema.tablelocks
--#       Collect metrics from
--#       performance_schema.table_lock_waits_summary_by_table
--#  --collect.perf_schema.eventsstatements
--#       Collect metrics from
--#       performance_schema.events_statements_summary_by_digest
--#  --collect.perf_schema.eventswaits
--#       Collect metrics from
--#       performance_schema.events_waits_summary_global_by_event_name
--#  --collect.perf_schema.file_events
--#       Collect metrics from performance_schema.file_summary_by_event_name
--#  --collect.perf_schema.file_instances
--#       Collect metrics from performance_schema.file_summary_by_instance
--#  --collect.binlog_size
--#       Collect the current size of all registered binlog files
--#  --collect.info_schema.userstats
--#       If running with userstat=1, set to true to collect user statistics
--#  --collect.info_schema.clientstats
--#       If running with userstat=1, set to true to collect client statistics
--#  --collect.info_schema.tablestats
--#       If running with userstat=1, set to true to collect table statistics
--#  --collect.info_schema.innodb_cmp
--#       Collect metrics from information_schema.innodb_cmp
--#  --collect.info_schema.innodb_cmpmem
--#       Collect metrics from information_schema.innodb_cmpmem
--#  --collect.info_schema.query_response_time
--#       Collect query response time distribution if query_response_time_stats
--#       is ON.
--#  --collect.engine_tokudb_status
--#       Collect from SHOW ENGINE TOKUDB STATUS
--#  --collect.perf_schema.replication_group_member_stats
--#       Collect metrics from performance_schema.replication_group_member_stats
--#  --collect.heartbeat
--#       Collect from heartbeat
--#  --collect.slave_hosts
--#       Scrape information from 'SHOW SLAVE HOSTS'
--#  --collect.engine_innodb_status
--#       Collect from SHOW ENGINE INNODB STATUS
--#  --log.level="info"
--#       Only log messages with the given severity or above. Valid levels:
--#       [debug, info, warn, error, fatal]
--#  --log.format="logger:stderr"
--#       Set the log target and format. Example:
--#       "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true"
-+ARGS="--collect.slave_status"
-
-changed: [Jns234-1]
 
 TASK [mysql : replication MySQL user] ******************************************
+ok: [Jns234-1]
 changed: [Jns234-2]
-changed: [Jns234-1]
 
 TASK [mysql : read only mode] **************************************************
-changed: [Jns234-2]
 changed: [Jns234-1]
+changed: [Jns234-2]
 
 RUNNING HANDLER [mysql : Restart mysql] ****************************************
-changed: [Jns234-1]
 changed: [Jns234-2]
 
 RUNNING HANDLER [mysql : Restart mysqld exporter] ******************************
 changed: [Jns234-2]
-changed: [Jns234-1]
 
 RUNNING HANDLER [mysql : Reset MySQL source] ***********************************
 skipping: [Jns234-1] => (item=stopreplica) 
@@ -621,20 +368,13 @@ changed: [Jns234-1]
 PLAY [setup bind9] *************************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 ok: [Jns234-3]
 
 TASK [bind : Get Bind9 and bind exporter] **************************************
-The following additional packages will be installed:
-  bind9-utils dns-root-data python3-ply
-Suggested packages:
-  bind-doc resolvconf python-ply-doc
-The following NEW packages will be installed:
-  bind9 bind9-utils dns-root-data prometheus-bind-exporter python3-dnspython
-  python3-ply
-0 upgraded, 6 newly installed, 0 to remove and 93 not upgraded.
-changed: [Jns234-1]
+ok: [Jns234-1]
+ok: [Jns234-2]
 The following additional packages will be installed:
   bind9-dnsutils bind9-libs bind9-utils dns-root-data python3-ply
 Suggested packages:
@@ -646,33 +386,22 @@ The following packages will be upgraded:
   bind9-dnsutils bind9-libs
 2 upgraded, 6 newly installed, 0 to remove and 264 not upgraded.
 changed: [Jns234-3]
-The following additional packages will be installed:
-  bind9-dnsutils bind9-libs bind9-utils dns-root-data python3-ply
-Suggested packages:
-  bind-doc resolvconf python-ply-doc
-The following NEW packages will be installed:
-  bind9 bind9-utils dns-root-data prometheus-bind-exporter python3-dnspython
-  python3-ply
-The following packages will be upgraded:
-  bind9-dnsutils bind9-libs
-2 upgraded, 6 newly installed, 0 to remove and 264 not upgraded.
-changed: [Jns234-2]
 
 TASK [bind : Copy conf.options to machine] *************************************
-changed: [Jns234-2]
-changed: [Jns234-1]
+ok: [Jns234-1]
+ok: [Jns234-2]
 changed: [Jns234-3]
 
-TASK [bind : Copy conf.options to machine] *************************************
-changed: [Jns234-2]
-changed: [Jns234-3]
+TASK [bind : Copy conf.options.local to machine] *******************************
 changed: [Jns234-1]
+changed: [Jns234-3]
+changed: [Jns234-2]
 
 TASK [bind : Copy zone to MASTER machine] **************************************
 skipping: [Jns234-1]
 skipping: [Jns234-2]
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpd4jrhq99/zone.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpl1k61nj3/zone.j2
 @@ -0,0 +1,15 @@
 +$TTL	604800
 +jankang.jk.    IN	SOA	jankang.jk. jan.jankang.jk. (
@@ -686,9 +415,9 @@ skipping: [Jns234-2]
 +jankang.jk.    IN  NS  Jns234-2.jankang.jk.
 +jankang.jk.    IN  NS  Jns234-3.jankang.jk.
 +
-+Jns234-1    IN  A   192.168.42.193
-+Jns234-2    IN  A   192.168.42.87
-+Jns234-3    IN  A   192.168.42.95
++Jns234-1    IN  A   192.168.42.87
++Jns234-2    IN  A   192.168.42.95
++Jns234-3    IN  A   192.168.42.72
 
 changed: [Jns234-3]
 
@@ -696,7 +425,7 @@ TASK [bind : Copy reversed zone to MASTER machine] *****************************
 skipping: [Jns234-1]
 skipping: [Jns234-2]
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpfcbsnpwa/zone.revresed.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmp76rb9wc0/zone.revresed.j2
 @@ -0,0 +1,14 @@
 +$TTL	604800
 +168.192.in-addr.arpa.    IN	SOA	Jns234-1.jankang.jk. jan.jankang.jk. (
@@ -709,27 +438,27 @@ skipping: [Jns234-2]
 +168.192.in-addr.arpa.    IN  NS  Jns234-1.jankang.jk.
 +168.192.in-addr.arpa.    IN  NS  Jns234-2.jankang.jk.
 +168.192.in-addr.arpa.    IN  NS  Jns234-3.jankang.jk.
-+193.42 IN PTR Jns234-1.jankang.jk.
-+87.42 IN PTR Jns234-2.jankang.jk.
-+95.42 IN PTR Jns234-3.jankang.jk.
++87.42 IN PTR Jns234-1.jankang.jk.
++95.42 IN PTR Jns234-2.jankang.jk.
++72.42 IN PTR Jns234-3.jankang.jk.
 
 changed: [Jns234-3]
 
 TASK [bind : Bind exporter is started] *****************************************
-ok: [Jns234-3]
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
+ok: [Jns234-3]
 
 TASK [bind : Flush!] ***********************************************************
 
 RUNNING HANDLER [bind : Restart bind9] *****************************************
-changed: [Jns234-2]
-changed: [Jns234-1]
 changed: [Jns234-3]
+changed: [Jns234-1]
+changed: [Jns234-2]
 
 RUNNING HANDLER [bind : Reload rndc] *******************************************
-changed: [Jns234-2]
 changed: [Jns234-3]
+changed: [Jns234-2]
 changed: [Jns234-1]
 
 TASK [bind : Add A records] ****************************************************
@@ -746,20 +475,20 @@ skipping: [Jns234-1] => (item=None)
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
-skipping: [Jns234-1] => (item=None) 
-skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
+skipping: [Jns234-2] => (item=None) 
+skipping: [Jns234-1] => (item=None) 
+skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
-skipping: [Jns234-2] => (item=None) 
-skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1]
+skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
@@ -779,25 +508,25 @@ changed: [Jns234-3] => (item=None)
 changed: [Jns234-3]
 
 TASK [bind : Bind9 is started] *************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 ok: [Jns234-3]
 
 PLAY [Change the dns resov for bind9] ******************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
-ok: [Jns234-3]
 ok: [Jns234-1]
+ok: [Jns234-3]
+ok: [Jns234-2]
 
 TASK [bind_resolv : Stop systemd-resolved] *************************************
+ok: [Jns234-1]
+ok: [Jns234-2]
 changed: [Jns234-3]
-changed: [Jns234-2]
-changed: [Jns234-1]
 
 TASK [bind_resolv : Copy manual resolve to machine] ****************************
 --- before: /etc/resolv.conf
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp5nkgi3gl/resolv.conf.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpj5y_teaq/resolv.conf.j2
 @@ -1,19 +1,4 @@
 -# This file is managed by man:systemd-resolved(8). Do not edit.
 -#
@@ -814,62 +543,8 @@ TASK [bind_resolv : Copy manual resolve to machine] ****************************
 -#
 -# See man:systemd-resolved.service(8) for details about the supported modes of
 -# operation for /etc/resolv.conf.
++nameserver 192.168.42.95
 +nameserver 192.168.42.87
-+nameserver 192.168.42.193
- 
--nameserver 127.0.0.53
--options edns0 trust-ad
--search openstacklocal
-+search jankang.jk
-
-changed: [Jns234-2]
---- before: /etc/resolv.conf
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpwqezodkb/resolv.conf.j2
-@@ -1,19 +1,4 @@
--# This file is managed by man:systemd-resolved(8). Do not edit.
--#
--# This is a dynamic resolv.conf file for connecting local clients to the
--# internal DNS stub resolver of systemd-resolved. This file lists all
--# configured search domains.
--#
--# Run "resolvectl status" to see details about the uplink DNS servers
--# currently in use.
--#
--# Third party programs must not access this file directly, but only through the
--# symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
--# replace this symlink by a static file or a different symlink.
--#
--# See man:systemd-resolved.service(8) for details about the supported modes of
--# operation for /etc/resolv.conf.
-+nameserver 192.168.42.87
-+nameserver 192.168.42.193
- 
--nameserver 127.0.0.53
--options edns0 trust-ad
--search openstacklocal
-+search jankang.jk
-
-changed: [Jns234-1]
---- before: /etc/resolv.conf
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp5g1q0iss/resolv.conf.j2
-@@ -1,19 +1,4 @@
--# This file is managed by man:systemd-resolved(8). Do not edit.
--#
--# This is a dynamic resolv.conf file for connecting local clients to the
--# internal DNS stub resolver of systemd-resolved. This file lists all
--# configured search domains.
--#
--# Run "resolvectl status" to see details about the uplink DNS servers
--# currently in use.
--#
--# Third party programs must not access this file directly, but only through the
--# symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
--# replace this symlink by a static file or a different symlink.
--#
--# See man:systemd-resolved.service(8) for details about the supported modes of
--# operation for /etc/resolv.conf.
-+nameserver 192.168.42.87
-+nameserver 192.168.42.193
  
 -nameserver 127.0.0.53
 -options edns0 trust-ad
@@ -877,15 +552,37 @@ changed: [Jns234-1]
 +search jankang.jk
 
 changed: [Jns234-3]
+--- before: /etc/resolv.conf
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpa19gxb92/resolv.conf.j2
+@@ -1,4 +1,4 @@
++nameserver 192.168.42.95
+ nameserver 192.168.42.87
+-nameserver 192.168.42.193
+ 
+ search jankang.jk
+
+changed: [Jns234-1]
+--- before: /etc/resolv.conf
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmp8t4ho05w/resolv.conf.j2
+@@ -1,4 +1,4 @@
++nameserver 192.168.42.95
+ nameserver 192.168.42.87
+-nameserver 192.168.42.193
+ 
+ search jankang.jk
+
+changed: [Jns234-2]
 
 PLAY [Install docker and dependencies, ensure docker started] ******************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 ok: [Jns234-3]
 
 TASK [docker : Install docker] *************************************************
+ok: [Jns234-2]
+ok: [Jns234-1]
 The following additional packages will be installed:
   bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
   ubuntu-fan
@@ -897,41 +594,20 @@ The following NEW packages will be installed:
   python3-websocket runc ubuntu-fan
 0 upgraded, 10 newly installed, 0 to remove and 264 not upgraded.
 changed: [Jns234-3]
-The following additional packages will be installed:
-  bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
-  ubuntu-fan
-Suggested packages:
-  ifupdown aufs-tools cgroupfs-mount | cgroup-lite debootstrap docker-doc
-  rinse zfs-fuse | zfsutils
-The following NEW packages will be installed:
-  bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
-  python3-websocket runc ubuntu-fan
-0 upgraded, 10 newly installed, 0 to remove and 93 not upgraded.
-changed: [Jns234-1]
-The following additional packages will be installed:
-  bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
-  ubuntu-fan
-Suggested packages:
-  ifupdown aufs-tools cgroupfs-mount | cgroup-lite debootstrap docker-doc
-  rinse zfs-fuse | zfsutils
-The following NEW packages will be installed:
-  bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
-  python3-websocket runc ubuntu-fan
-0 upgraded, 10 newly installed, 0 to remove and 264 not upgraded.
-changed: [Jns234-2]
 
 TASK [docker : Ensure docker is started] ***************************************
-ok: [Jns234-2]
-ok: [Jns234-3]
 ok: [Jns234-1]
+ok: [Jns234-3]
+ok: [Jns234-2]
 
 PLAY [update and setup agama] **************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [agama : Create agama dir] ************************************************
+ok: [Jns234-1]
 --- before
 +++ after
 @@ -1,4 +1,4 @@
@@ -942,33 +618,23 @@ TASK [agama : Create agama dir] ************************************************
  }
 
 changed: [Jns234-2]
---- before
-+++ after
-@@ -1,4 +1,4 @@
- {
-     "path": "/opt/agama",
--    "state": "absent"
-+    "state": "directory"
- }
-
-changed: [Jns234-1]
 
 TASK [agama : Download Dockerfile and agama.py] ********************************
+ok: [Jns234-1] => (item=Dockerfile)
 changed: [Jns234-2] => (item=Dockerfile)
-changed: [Jns234-1] => (item=Dockerfile)
-changed: [Jns234-1] => (item=agama.py)
 changed: [Jns234-2] => (item=agama.py)
+ok: [Jns234-1] => (item=agama.py)
 
 TASK [agama : Build agama image] ***********************************************
-changed: [Jns234-1]
+ok: [Jns234-1]
 changed: [Jns234-2]
 
 TASK [agama : agama container] *************************************************
-changed: [Jns234-1]
+ok: [Jns234-1]
 changed: [Jns234-2]
 
 TASK [agama : agama container nuber 2] *****************************************
-changed: [Jns234-1]
+ok: [Jns234-1]
 changed: [Jns234-2]
 
 PLAY [reconfig nginx] **********************************************************
@@ -979,20 +645,8 @@ ok: [Jns234-2]
 ok: [Jns234-3]
 
 TASK [nginx : install nginx and prometheus-nginx-exporter] *********************
-The following additional packages will be installed:
-  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
-  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
-  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
-  libwebp6 libxpm4 nginx-common nginx-core
-Suggested packages:
-  libgd-tools fcgiwrap nginx-doc ssl-cert
-The following NEW packages will be installed:
-  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
-  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
-  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
-  libwebp6 libxpm4 nginx nginx-common nginx-core prometheus-nginx-exporter
-0 upgraded, 18 newly installed, 0 to remove and 264 not upgraded.
-changed: [Jns234-2]
+ok: [Jns234-2]
+ok: [Jns234-1]
 The following additional packages will be installed:
   fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
   libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
@@ -1007,24 +661,11 @@ The following NEW packages will be installed:
   libwebp6 libxpm4 nginx nginx-common nginx-core prometheus-nginx-exporter
 0 upgraded, 18 newly installed, 0 to remove and 264 not upgraded.
 changed: [Jns234-3]
-The following additional packages will be installed:
-  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
-  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
-  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
-  libwebp6 libxpm4 nginx-common nginx-core
-Suggested packages:
-  libgd-tools fcgiwrap nginx-doc ssl-cert
-The following NEW packages will be installed:
-  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
-  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
-  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
-  libwebp6 libxpm4 nginx nginx-common nginx-core prometheus-nginx-exporter
-0 upgraded, 18 newly installed, 0 to remove and 93 not upgraded.
-changed: [Jns234-1]
 
 TASK [nginx : copy default conf to nginx sites-enabled] ************************
+ok: [Jns234-1]
 --- before: /etc/nginx/sites-enabled/default
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp4uq2ibxb/default.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmp54z4nmea/default.j2
 @@ -1,91 +1,23 @@
 -##
 -# You should look at the following URL's in order to grasp a solid understanding
@@ -1140,248 +781,45 @@ TASK [nginx : copy default conf to nginx sites-enabled] ************************
 
 changed: [Jns234-3]
 --- before: /etc/nginx/sites-enabled/default
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpy25n0_cu/default.j2
-@@ -1,91 +1,20 @@
--##
--# You should look at the following URL's in order to grasp a solid understanding
--# of Nginx configuration files in order to fully unleash the power of Nginx.
--# https://www.nginx.com/resources/wiki/start/
--# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
--# https://wiki.debian.org/Nginx/DirectoryStructure
--#
--# In most cases, administrators will remove this file from sites-enabled/ and
--# leave it as reference inside of sites-available where it will continue to be
--# updated by the nginx packaging team.
--#
--# This file will automatically load configuration files provided by other
--# applications, such as Drupal or Wordpress. These applications will be made
--# available underneath a path with that package name, such as /drupal8.
--#
--# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
--##
-+server {
-+    listen 80 default_server;
-+    server_name _;
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmp66j2ka_4/default.j2
+@@ -2,16 +2,13 @@
+     listen 80 default_server;
+     server_name _;
  
--# Default server configuration
--#
--server {
--	listen 80 default_server;
--	listen [::]:80 default_server;
 +        location / {
 +        proxy_set_header Host $http_host;
 +        proxy_pass http://localhost:8001;
 +    }
-+    
+     
  
--	# SSL configuration
--	#
--	# listen 443 ssl default_server;
--	# listen [::]:443 ssl default_server;
--	#
--	# Note: You should disable gzip for SSL traffic.
--	# See: https://bugs.debian.org/773332
--	#
--	# Read up on ssl_ciphers to ensure a secure configuration.
--	# See: https://bugs.debian.org/765782
--	#
--	# Self signed certs generated by the ssl-cert package
--	# Don't use them in a production server!
--	#
--	# include snippets/snakeoil.conf;
--
--	root /var/www/html;
--
--	# Add index.php to the list if you are using PHP
--	index index.html index.htm index.nginx-debian.html;
--
--	server_name _;
--
--	location / {
--		# First attempt to serve request as file, then
--		# as directory, then fall back to displaying a 404.
--		try_files $uri $uri/ =404;
--	}
--
--	# pass PHP scripts to FastCGI server
--	#
--	#location ~ \.php$ {
--	#	include snippets/fastcgi-php.conf;
--	#
--	#	# With php-fpm (or other unix sockets):
--	#	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
--	#	# With php-cgi (or other tcp sockets):
--	#	fastcgi_pass 127.0.0.1:9000;
--	#}
--
--	# deny access to .htaccess files, if Apache's document root
--	# concurs with nginx's one
--	#
--	#location ~ /\.ht {
--	#	deny all;
--	#}
-+    
-+    
+-        location /prometheus {
+-        proxy_pass http://localhost:9090;
+-    }
+     
+-        location /grafana {
+-        proxy_set_header Host $http_host;
+-        proxy_pass http://localhost:3001;
+-    }
+     
  }
  
--
--# Virtual Host configuration for example.com
--#
--# You can move that to a different file under sites-available/ and symlink that
--# to sites-enabled/ to enable it.
--#
--#server {
--#	listen 80;
--#	listen [::]:80;
--#
--#	server_name example.com;
--#
--#	root /var/www/example.com;
--#	index index.html;
--#
--#	location / {
--#		try_files $uri $uri/ =404;
--#	}
--#}
-+server {
-+    listen 8080 default_server;
-+    location /stub_status {
-+                stub_status;
-+        }
-+}
-\ No newline at end of file
-
-changed: [Jns234-1]
---- before: /etc/nginx/sites-enabled/default
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmph1nrluqa/default.j2
-@@ -1,91 +1,20 @@
--##
--# You should look at the following URL's in order to grasp a solid understanding
--# of Nginx configuration files in order to fully unleash the power of Nginx.
--# https://www.nginx.com/resources/wiki/start/
--# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
--# https://wiki.debian.org/Nginx/DirectoryStructure
--#
--# In most cases, administrators will remove this file from sites-enabled/ and
--# leave it as reference inside of sites-available where it will continue to be
--# updated by the nginx packaging team.
--#
--# This file will automatically load configuration files provided by other
--# applications, such as Drupal or Wordpress. These applications will be made
--# available underneath a path with that package name, such as /drupal8.
--#
--# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
--##
-+server {
-+    listen 80 default_server;
-+    server_name _;
- 
--# Default server configuration
--#
--server {
--	listen 80 default_server;
--	listen [::]:80 default_server;
-+        location / {
-+        proxy_set_header Host $http_host;
-+        proxy_pass http://localhost:8001;
-+    }
-+    
- 
--	# SSL configuration
--	#
--	# listen 443 ssl default_server;
--	# listen [::]:443 ssl default_server;
--	#
--	# Note: You should disable gzip for SSL traffic.
--	# See: https://bugs.debian.org/773332
--	#
--	# Read up on ssl_ciphers to ensure a secure configuration.
--	# See: https://bugs.debian.org/765782
--	#
--	# Self signed certs generated by the ssl-cert package
--	# Don't use them in a production server!
--	#
--	# include snippets/snakeoil.conf;
--
--	root /var/www/html;
--
--	# Add index.php to the list if you are using PHP
--	index index.html index.htm index.nginx-debian.html;
--
--	server_name _;
--
--	location / {
--		# First attempt to serve request as file, then
--		# as directory, then fall back to displaying a 404.
--		try_files $uri $uri/ =404;
--	}
--
--	# pass PHP scripts to FastCGI server
--	#
--	#location ~ \.php$ {
--	#	include snippets/fastcgi-php.conf;
--	#
--	#	# With php-fpm (or other unix sockets):
--	#	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
--	#	# With php-cgi (or other tcp sockets):
--	#	fastcgi_pass 127.0.0.1:9000;
--	#}
--
--	# deny access to .htaccess files, if Apache's document root
--	# concurs with nginx's one
--	#
--	#location ~ /\.ht {
--	#	deny all;
--	#}
-+    
-+    
- }
- 
--
--# Virtual Host configuration for example.com
--#
--# You can move that to a different file under sites-available/ and symlink that
--# to sites-enabled/ to enable it.
--#
--#server {
--#	listen 80;
--#	listen [::]:80;
--#
--#	server_name example.com;
--#
--#	root /var/www/example.com;
--#	index index.html;
--#
--#	location / {
--#		try_files $uri $uri/ =404;
--#	}
--#}
-+server {
-+    listen 8080 default_server;
-+    location /stub_status {
-+                stub_status;
-+        }
-+}
-\ No newline at end of file
 
 changed: [Jns234-2]
 
 TASK [nginx : start nginx and nginx node exporter] *****************************
-ok: [Jns234-3] => (item=nginx)
 ok: [Jns234-1] => (item=nginx)
 ok: [Jns234-2] => (item=nginx)
-changed: [Jns234-2] => (item=prometheus-nginx-exporter)
+ok: [Jns234-3] => (item=nginx)
+ok: [Jns234-2] => (item=prometheus-nginx-exporter)
+ok: [Jns234-1] => (item=prometheus-nginx-exporter)
 changed: [Jns234-3] => (item=prometheus-nginx-exporter)
-changed: [Jns234-1] => (item=prometheus-nginx-exporter)
 
 RUNNING HANDLER [nginx : Restart nginx] ****************************************
-changed: [Jns234-1]
-changed: [Jns234-2]
 changed: [Jns234-3]
+changed: [Jns234-2]
 
 RUNNING HANDLER [nginx : Restart nginx-exporter] *******************************
 changed: [Jns234-3]
-changed: [Jns234-1]
 changed: [Jns234-2]
 
 PLAY [Install and configure prometheus] ****************************************
@@ -1392,6 +830,8 @@ ok: [Jns234-2]
 ok: [Jns234-1]
 
 TASK [prometheus : Install prometheus] *****************************************
+ok: [Jns234-1]
+ok: [Jns234-2]
 The following additional packages will be installed:
   fonts-glyphicons-halflings javascript-common libc-ares2 libjs-bootstrap
   libjs-bootstrap4 libjs-d3 libjs-eonasdan-bootstrap-datetimepicker
@@ -1408,49 +848,19 @@ The following NEW packages will be installed:
   nodejs-doc prometheus
 0 upgraded, 19 newly installed, 0 to remove and 264 not upgraded.
 changed: [Jns234-3]
-The following additional packages will be installed:
-  fonts-glyphicons-halflings javascript-common libc-ares2 libjs-bootstrap
-  libjs-bootstrap4 libjs-d3 libjs-eonasdan-bootstrap-datetimepicker
-  libjs-jquery libjs-jquery-hotkeys libjs-moment libjs-moment-timezone
-  libjs-mustache libjs-popper.js libjs-rickshaw libnode64 node-jquery nodejs
-  nodejs-doc
-Suggested packages:
-  npm
-The following NEW packages will be installed:
-  fonts-glyphicons-halflings javascript-common libc-ares2 libjs-bootstrap
-  libjs-bootstrap4 libjs-d3 libjs-eonasdan-bootstrap-datetimepicker
-  libjs-jquery libjs-jquery-hotkeys libjs-moment libjs-moment-timezone
-  libjs-mustache libjs-popper.js libjs-rickshaw libnode64 node-jquery nodejs
-  nodejs-doc prometheus
-0 upgraded, 19 newly installed, 0 to remove and 93 not upgraded.
-changed: [Jns234-1]
-The following additional packages will be installed:
-  fonts-glyphicons-halflings javascript-common libc-ares2 libjs-bootstrap
-  libjs-bootstrap4 libjs-d3 libjs-eonasdan-bootstrap-datetimepicker
-  libjs-jquery libjs-jquery-hotkeys libjs-moment libjs-moment-timezone
-  libjs-mustache libjs-popper.js libjs-rickshaw libnode64 node-jquery nodejs
-  nodejs-doc
-Suggested packages:
-  npm
-The following NEW packages will be installed:
-  fonts-glyphicons-halflings javascript-common libc-ares2 libjs-bootstrap
-  libjs-bootstrap4 libjs-d3 libjs-eonasdan-bootstrap-datetimepicker
-  libjs-jquery libjs-jquery-hotkeys libjs-moment libjs-moment-timezone
-  libjs-mustache libjs-popper.js libjs-rickshaw libnode64 node-jquery nodejs
-  nodejs-doc prometheus
-0 upgraded, 19 newly installed, 0 to remove and 264 not upgraded.
-changed: [Jns234-2]
 
 TASK [prometheus : copy prometheus config] *************************************
+ok: [Jns234-1]
+ok: [Jns234-2]
 --- before: /etc/prometheus/prometheus.yml
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpvv2cfvnm/prometheus.yml.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpd73spj2l/prometheus.yml.j2
 @@ -1,5 +1,3 @@
 -# Sample config for Prometheus.
 -
  global:
    scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
    evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-@@ -33,12 +31,46 @@
+@@ -33,12 +31,47 @@
  
      # metrics_path defaults to '/metrics'
      # scheme defaults to 'http'.
@@ -1485,6 +895,7 @@ TASK [prometheus : copy prometheus config] *************************************
 +      - targets:
 +        - Jns234-1:9113
 +        - Jns234-2:9113
++        - Jns234-3:9113
 +  - job_name: mysql
 +    static_configs:
 +      - targets:
@@ -1506,169 +917,73 @@ TASK [prometheus : copy prometheus config] *************************************
 +        - Jns234-2:9165
 
 changed: [Jns234-3]
---- before: /etc/prometheus/prometheus.yml
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpr6c27h99/prometheus.yml.j2
-@@ -1,5 +1,3 @@
--# Sample config for Prometheus.
--
- global:
-   scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-@@ -33,12 +31,46 @@
- 
-     # metrics_path defaults to '/metrics'
-     # scheme defaults to 'http'.
--
-+    metrics_path: /prometheus/metrics
-     static_configs:
--      - targets: ['localhost:9090']
--
--  - job_name: node
--    # If prometheus-node-exporter is installed, grab stats about the local
--    # machine by default.
-+    - targets:
-+           - Jns234-3:9090
-+           - Jns234-1:9090
-+           - Jns234-2:9090
-+    
-+  - job_name: linux
-     static_configs:
--      - targets: ['localhost:9100']
-+      - targets:
-+        - Jns234-1:9100
-+        - Jns234-2:9100
-+        - Jns234-3:9100
-+  - job_name: bind9
-+    static_configs:
-+      - targets:
-+        - Jns234-1:9119
-+        - Jns234-2:9119
-+        - Jns234-3:9119
-+  - job_name: nginx
-+    static_configs:
-+      - targets:
-+        - Jns234-1:9113
-+        - Jns234-2:9113
-+  - job_name: mysql
-+    static_configs:
-+      - targets:
-+        - Jns234-1:9104
-+        - Jns234-2:9104
-+  - job_name: influxdb
-+    static_configs:
-+      - targets:
-+        - Jns234-3:9424
-+  - job_name: haproxy
-+    static_configs:
-+      - targets:
-+        - Jns234-1:9101
-+        - Jns234-2:9101
-+  - job_name: keepalived
-+    static_configs:
-+      - targets:
-+        - Jns234-1:9165
-+        - Jns234-2:9165
-
-changed: [Jns234-2]
---- before: /etc/prometheus/prometheus.yml
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp3gst1iau/prometheus.yml.j2
-@@ -1,5 +1,3 @@
--# Sample config for Prometheus.
--
- global:
-   scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-@@ -33,12 +31,46 @@
- 
-     # metrics_path defaults to '/metrics'
-     # scheme defaults to 'http'.
--
-+    metrics_path: /prometheus/metrics
-     static_configs:
--      - targets: ['localhost:9090']
--
--  - job_name: node
--    # If prometheus-node-exporter is installed, grab stats about the local
--    # machine by default.
-+    - targets:
-+           - Jns234-3:9090
-+           - Jns234-1:9090
-+           - Jns234-2:9090
-+    
-+  - job_name: linux
-     static_configs:
--      - targets: ['localhost:9100']
-+      - targets:
-+        - Jns234-1:9100
-+        - Jns234-2:9100
-+        - Jns234-3:9100
-+  - job_name: bind9
-+    static_configs:
-+      - targets:
-+        - Jns234-1:9119
-+        - Jns234-2:9119
-+        - Jns234-3:9119
-+  - job_name: nginx
-+    static_configs:
-+      - targets:
-+        - Jns234-1:9113
-+        - Jns234-2:9113
-+  - job_name: mysql
-+    static_configs:
-+      - targets:
-+        - Jns234-1:9104
-+        - Jns234-2:9104
-+  - job_name: influxdb
-+    static_configs:
-+      - targets:
-+        - Jns234-3:9424
-+  - job_name: haproxy
-+    static_configs:
-+      - targets:
-+        - Jns234-1:9101
-+        - Jns234-2:9101
-+  - job_name: keepalived
-+    static_configs:
-+      - targets:
-+        - Jns234-1:9165
-+        - Jns234-2:9165
-
-changed: [Jns234-1]
 
 TASK [prometheus : copy prometheus default config] *****************************
+ok: [Jns234-1]
+ok: [Jns234-2]
 --- before: /etc/default/prometheus
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpfa1r9btx/prometheus.j2
-@@ -1,5 +1,5 @@
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpg3z_ona1/prometheus.j2
+@@ -1,57 +1,2 @@
  # Set the command-line arguments to pass to the server.
 -ARGS=""
+-
+-# Prometheus supports the following options:
+-#  --config.file="/etc/prometheus/prometheus.yml"
+-#                             Prometheus configuration file path.
+-#  --web.listen-address="0.0.0.0:9090"
+-#                             Address to listen on for UI, API, and telemetry.
+-#  --web.read-timeout=5m      Maximum duration before timing out read of the
+-#                             request, and closing idle connections.
+-#  --web.max-connections=512  Maximum number of simultaneous connections.
+-#  --web.external-url=<URL>   The URL under which Prometheus is externally
+-#                             reachable (for example, if Prometheus is served
+-#                             via a reverse proxy). Used for generating
+-#                             relative and absolute links back to Prometheus
+-#                             itself. If the URL has a path portion, it will
+-#                             be used to prefix all HTTP endpoints served by
+-#                             Prometheus. If omitted, relevant URL components
+-#                             will be derived automatically.
+-#  --web.route-prefix=<path>  Prefix for the internal routes of web endpoints.
+-#                             Defaults to path of --web.external-url.
+-#  --web.local-assets="/usr/share/prometheus/web/"
+-#                             Path to static asset/templates directory.
+-#  --web.user-assets=<path>   Path to static asset directory, available at
+-#                             /user.
+-#  --web.enable-lifecycle     Enable shutdown and reload via HTTP request.
+-#  --web.enable-admin-api     Enables API endpoints for admin control actions.
+-#  --web.console.templates="/etc/prometheus/consoles"
+-#                             Path to the console template directory,
+-#                             available at /consoles.
+-#  --web.console.libraries="/etc/prometheus/console_libraries"
+-#                             Path to the console library directory.
+-#  --storage.tsdb.path="/var/lib/prometheus/metrics2/"
+-#                             Base path for metrics storage.
+-#  --storage.tsdb.min-block-duration=2h
+-#                             Minimum duration of a data block before being
+-#                             persisted.
+-#  --storage.tsdb.max-block-duration=<duration>
+-#                             Maximum duration compacted blocks may span.
+-#                             (Defaults to 10% of the retention period)
+-#  --storage.tsdb.retention=15d
+-#                             How long to retain samples in the storage.
+-#  --storage.tsdb.use-lockfile
+-#                             Create a lockfile in data directory.
+-#  --alertmanager.notification-queue-capacity=10000
+-#                             The capacity of the queue for pending alert
+-#                             manager notifications.
+-#  --alertmanager.timeout=10s
+-#                             Timeout for sending alerts to Alertmanager.
+-#  --query.lookback-delta=5m  The delta difference allowed for retrieving
+-#                             metrics during expression evaluations.
+-#  --query.timeout=2m         Maximum time a query may take before being
+-#                             aborted.
+-#  --query.max-concurrency=20
+-#                             Maximum number of queries executed concurrently.
+-#  --log.level=info           Only log messages with the given severity or
+-#                             above. One of: [debug, info, warn, error]
 +ARGS="--web.external-url=http://Jns234-3/prometheus"
- 
- # Prometheus supports the following options:
- #  --config.file="/etc/prometheus/prometheus.yml"
 
 changed: [Jns234-3]
---- before: /etc/default/prometheus
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp6p3rm931/prometheus.j2
-@@ -1,5 +1,5 @@
- # Set the command-line arguments to pass to the server.
--ARGS=""
-+ARGS="--web.external-url=http://Jns234-3/prometheus"
- 
- # Prometheus supports the following options:
- #  --config.file="/etc/prometheus/prometheus.yml"
-
-changed: [Jns234-1]
---- before: /etc/default/prometheus
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpmqa3fllc/prometheus.j2
-@@ -1,5 +1,5 @@
- # Set the command-line arguments to pass to the server.
--ARGS=""
-+ARGS="--web.external-url=http://Jns234-3/prometheus"
- 
- # Prometheus supports the following options:
- #  --config.file="/etc/prometheus/prometheus.yml"
-
-changed: [Jns234-2]
 
 TASK [prometheus : start prometheus] *******************************************
 ok: [Jns234-3]
@@ -1677,8 +992,6 @@ ok: [Jns234-2]
 
 RUNNING HANDLER [prometheus : Restart prometheus] ******************************
 changed: [Jns234-3]
-changed: [Jns234-2]
-changed: [Jns234-1]
 
 PLAY [Install influxdb and exporter] *******************************************
 
@@ -1708,7 +1021,7 @@ changed: [Jns234-3]
 TASK [influxdb : install Influxdb and telegraf] ********************************
 Selecting previously unselected package influxdb.
 (Reading database ... 66389 files and directories currently installed.)
-Preparing to unpack .../influxdb_1.8.10_amd64h5tulz61.deb ...
+Preparing to unpack .../influxdb_1.8.10_amd64jelgdylt.deb ...
 Unpacking influxdb (1.8.10-1) ...
 Setting up influxdb (1.8.10-1) ...
 Processing triggers for man-db (2.9.1-1) ...
@@ -1716,7 +1029,7 @@ changed: [Jns234-3]
 
 TASK [influxdb : confgiure influxdb] *******************************************
 --- before: /etc/influxdb/influxdb.conf
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp2m4mllh1/influxdb.conf.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpu8wqyg4d/influxdb.conf.j2
 @@ -1,596 +1,22 @@
 -### Welcome to the InfluxDB configuration file.
 -
@@ -2348,7 +1661,7 @@ changed: [Jns234-3]
 
 TASK [influxdb : influxdb backup crontab] **************************************
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmplr1zr4gw/influxdb-backup.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmp4410_swt/influxdb-backup.j2
 @@ -0,0 +1,3 @@
 +* * * * * rm -rf /home/backup/influxdb/*; influxd backup -portable -database telegraf /home/backup/influxdb
 +0 0 * * *  backup  duplicity --no-encryption full /home/backup/influxdb/ rsync://Jns234@backup.jankang.jk/influxdb
@@ -2361,7 +1674,7 @@ changed: [Jns234-3]
 
 TASK [influxdb_exporter : copy pinger service file] ****************************
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmplfajo5ab/prometheus-influxdb-stats-exporter.service.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmps1iuk_d2/prometheus-influxdb-stats-exporter.service.j2
 @@ -0,0 +1,9 @@
 +[Unit]
 +After=network-online.target
@@ -2432,7 +1745,7 @@ changed: [Jns234-3]
 
 TASK [pinger : copy pinger service file] ***************************************
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp7sw3jkvo/pinger.service.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpzz6joair/pinger.service.j2
 @@ -0,0 +1,9 @@
 +[Unit]
 +After=network-online.target
@@ -2461,7 +1774,7 @@ changed: [Jns234-3]
 
 TASK [pinger : copy service config file] ***************************************
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpor3f_p_p/pinger.conf.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpw679zu2o/pinger.conf.j2
 @@ -0,0 +1,3 @@
 +database_url=http://Jns234-3:8086
 +database_name=influxdb1
@@ -5581,14 +4894,7 @@ ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [haproxy : Install Haproxy] ***********************************************
-The following additional packages will be installed:
-  liblua5.3-0
-Suggested packages:
-  vim-haproxy haproxy-doc
-The following NEW packages will be installed:
-  haproxy liblua5.3-0 prometheus-haproxy-exporter
-0 upgraded, 3 newly installed, 0 to remove and 93 not upgraded.
-changed: [Jns234-1]
+ok: [Jns234-1]
 The following additional packages will be installed:
   liblua5.3-0
 Suggested packages:
@@ -5599,8 +4905,9 @@ The following NEW packages will be installed:
 changed: [Jns234-2]
 
 TASK [haproxy : HAProxy config] ************************************************
+ok: [Jns234-1]
 --- before: /etc/haproxy/haproxy.cfg
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp75pthj35/haproxy.cfg.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmp9i6v2y1i/haproxy.cfg.j2
 @@ -8,14 +8,11 @@
  	group haproxy
  	daemon
@@ -5641,52 +4948,11 @@ TASK [haproxy : HAProxy config] ************************************************
 \ No newline at end of file
 
 changed: [Jns234-2]
---- before: /etc/haproxy/haproxy.cfg
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp6z6b6fuw/haproxy.cfg.j2
-@@ -8,14 +8,11 @@
- 	group haproxy
- 	daemon
- 
--	# Default SSL material locations
- 	ca-base /etc/ssl/certs
- 	crt-base /etc/ssl/private
- 
--	# See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
--        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
--        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
--        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
-+	ssl-default-bind-ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:RSA+AESGCM:RSA+AES:!aNULL:!MD5:!DSS
-+	ssl-default-bind-options no-sslv3
- 
- defaults
- 	log	global
-@@ -32,3 +29,19 @@
- 	errorfile 502 /etc/haproxy/errors/502.http
- 	errorfile 503 /etc/haproxy/errors/503.http
- 	errorfile 504 /etc/haproxy/errors/504.http
-+
-+listen agama
-+     bind :88
-+     stats enable
-+     stats uri /haproxy?stats
-+     server agama11 Jns234-1:8001 check
-+     server agama12 Jns234-1:8002 check
-+     server agama21 Jns234-2:8001 check
-+     server agama22 Jns234-2:8002 check
-+
-+
-+listen stats
-+    bind :9188
-+    stats enable
-+    stats uri /stats
-+    stats refresh 5s
-\ No newline at end of file
-
-changed: [Jns234-1]
 
 TASK [haproxy : Add args] ******************************************************
+ok: [Jns234-1]
 --- before: /etc/default/prometheus-haproxy-exporter
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmp66flv5s5/haproxy-exporter-args.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpgp780as0/haproxy-exporter-args.j2
 @@ -1,35 +1 @@
 -# Set the command-line arguments to pass to the server.
 -# Due to shell scaping, to pass backslashes for regexes, you need to double
@@ -5727,70 +4993,26 @@ TASK [haproxy : Add args] ******************************************************
 \ No newline at end of file
 
 changed: [Jns234-2]
---- before: /etc/default/prometheus-haproxy-exporter
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpw442p8ia/haproxy-exporter-args.j2
-@@ -1,35 +1 @@
--# Set the command-line arguments to pass to the server.
--# Due to shell scaping, to pass backslashes for regexes, you need to double
--# them (\\d for \d). If running under systemd, you need to double them again
--# (\\\\d to mean \d), and escape newlines too.
--ARGS=""
--
--# Prometheus-haproxy-exporter supports the following options:
--#
--#  --web.listen-address=":9101"
--#    Address to listen on for web interface and telemetry.
--#  --web.telemetry-path="/metrics"
--#    Path under which to expose metrics.
--#  --haproxy.scrape-uri="http://localhost/;csv"
--#    URI on which to scrape HAProxy.
--#  --haproxy.ssl-verify
--#    Flag that enables SSL certificate verification for the scrape URI
--#  --haproxy.server-metric-fields="2,3,4,5,6,7,8,9,13,14,15,16,17,18,21,24,33,35,38,39,40,41,42,43,44"
--#    Comma-separated list of exported server metrics. See
--#    http://cbonte.github.io/haproxy-dconv/configuration-1.5.html#9.1
--#  --haproxy.timeout=5s
--#    Timeout for trying to get stats from HAProxy.
--#  --haproxy.pid-file=""
--#    Path to HAProxy pid file.
--#
--#    If provided, the standard process metrics get exported for the HAProxy
--#    process, prefixed with 'haproxy_process_...'. The haproxy_process exporter
--#    needs to have read access to files owned by the HAProxy process. Depends
--#    on the availability of /proc.
--#    https://prometheus.io/docs/instrumenting/writing_clientlibs/#process-metrics.
--#  --log.level="info"
--#    Only log messages with the given severity or above.
--#    Valid levels: [debug, info, warn, error, fatal]
--#  --log.format="logger:stderr"
--#    Set the log target and format. Example:
--#    "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true"
-+ARGS="--haproxy.scrape-uri="http://localhost:9188/stats;csv"
-\ No newline at end of file
-
-changed: [Jns234-1]
 
 TASK [haproxy : Start haproxy] *************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [haproxy : Start service haproxy-exporter] ********************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 RUNNING HANDLER [haproxy : restart haproxy] ************************************
-changed: [Jns234-1]
 changed: [Jns234-2]
 
 RUNNING HANDLER [haproxy : restart haproxy exporter] ***************************
 changed: [Jns234-2]
-changed: [Jns234-1]
 
 PLAY [Install Keepalived] ******************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [keepalived : Create folder for keepalived] *******************************
 --- before
@@ -5802,55 +5024,13 @@ TASK [keepalived : Create folder for keepalived] *******************************
 +    "state": "directory"
  }
 
-changed: [Jns234-1]
---- before
-+++ after
-@@ -1,4 +1,4 @@
- {
-     "path": "/etc/keepalived/",
--    "state": "absent"
-+    "state": "directory"
- }
-
 changed: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [keepalived : Configure keepalived] ***************************************
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpss0uw4zy/keepalived.conf.j2
-@@ -0,0 +1,27 @@
-+global_defs {
-+    enable_script_security
-+    script_user keepalivedScript
-+}
-+
-+vrrp_script check_haproxy {
-+    script "/home/keepalivedScript/keepalivedScript"
-+    weight 20
-+    interval 1
-+}
-+
-+vrrp_instance agama {             
-+    interface ens3
-+    virtual_router_id 1
-+        priority 110
-+        advert_int 1                            
-+    virtual_ipaddress {                     
-+        192.168.100.193/24            
-+        192.168.101.193/24            
-+    }
-+    unicast_peer {                          
-+                                        192.168.42.87
-+                    }
-+    track_script {
-+        check_haproxy
-+    }
-+}
-\ No newline at end of file
-
-changed: [Jns234-1]
---- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpukvhoyvb/keepalived.conf.j2
-@@ -0,0 +1,27 @@
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpead79av_/keepalived.conf.j2
+@@ -0,0 +1,28 @@
 +global_defs {
 +    enable_script_security
 +    script_user keepalivedScript
@@ -5867,12 +5047,13 @@ changed: [Jns234-1]
 +    virtual_router_id 1
 +        priority 100
 +        advert_int 1                            
-+    virtual_ipaddress {                     
-+        192.168.100.193/24            
-+        192.168.101.193/24            
++    virtual_ipaddress {      
++                       
++        192.168.100.87/24
++            
 +    }
 +    unicast_peer {                          
-+                        192.168.42.193
++                        192.168.42.87
 +                                    }
 +    track_script {
 +        check_haproxy
@@ -5881,8 +5062,34 @@ changed: [Jns234-1]
 \ No newline at end of file
 
 changed: [Jns234-2]
+--- before: /etc/keepalived/keepalived.conf
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmpehvp29rs/keepalived.conf.j2
+@@ -12,16 +12,16 @@
+ vrrp_instance agama {             
+     interface ens3
+     virtual_router_id 1
+-        priority 100
++        priority 110
+         advert_int 1                            
+     virtual_ipaddress {      
+                        
+-        192.168.100.193/24
++        192.168.100.87/24
+             
+     }
+     unicast_peer {                          
+-                        192.168.42.193
+-                                    }
++                                        192.168.42.95
++                    }
+     track_script {
+         check_haproxy
+     }
+
+changed: [Jns234-1]
 
 TASK [keepalived : Inatall keepalived] *****************************************
+ok: [Jns234-1]
 The following additional packages will be installed:
   ipvsadm libmysqlclient21 libnl-3-200 libnl-genl-3-200 libsensors-config
   libsensors5 libsnmp-base libsnmp35
@@ -5893,36 +5100,19 @@ The following NEW packages will be installed:
   libsensors-config libsensors5 libsnmp-base libsnmp35
 0 upgraded, 9 newly installed, 0 to remove and 264 not upgraded.
 changed: [Jns234-2]
-The following additional packages will be installed:
-  ipvsadm libmysqlclient21 libnl-3-200 libnl-genl-3-200 libsensors-config
-  libsensors5 libsnmp-base libsnmp35
-Suggested packages:
-  heartbeat ldirectord lm-sensors snmp-mibs-downloader
-The following NEW packages will be installed:
-  ipvsadm keepalived libmysqlclient21 libnl-3-200 libnl-genl-3-200
-  libsensors-config libsensors5 libsnmp-base libsnmp35
-0 upgraded, 9 newly installed, 0 to remove and 93 not upgraded.
-changed: [Jns234-1]
 
 TASK [keepalived : Start keepalived] *******************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [keepalived : creater keepalivescript user] *******************************
-changed: [Jns234-1]
+ok: [Jns234-1]
 changed: [Jns234-2]
 
 TASK [keepalived : Propagate keepalived script] ********************************
+ok: [Jns234-1]
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpl416sp08/keepalivedScript.j2
-@@ -0,0 +1,2 @@
-+#!/bin/bash
-+ss -ntl | grep -q ':88 '
-\ No newline at end of file
-
-changed: [Jns234-1]
---- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpw5cvvp6b/keepalivedScript.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmp2wdm90j0/keepalivedScript.j2
 @@ -0,0 +1,2 @@
 +#!/bin/bash
 +ss -ntl | grep -q ':88 '
@@ -5932,11 +5122,12 @@ changed: [Jns234-2]
 
 TASK [keepalived : Download keepalived exporter] *******************************
 changed: [Jns234-2]
-changed: [Jns234-1]
+ok: [Jns234-1]
 
 TASK [keepalived : Create keepalived-exporter service] *************************
+ok: [Jns234-1]
 --- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpv7dkg1jd/keepalived-exporter.service.j2
++++ after: /Users/user/.ansible/tmp/ansible-local-24698z6fbzo8p/tmps1rb_qr5/keepalived-exporter.service.j2
 @@ -0,0 +1,9 @@
 +[Unit]
 +
@@ -5950,45 +5141,27 @@ TASK [keepalived : Create keepalived-exporter service] *************************
 \ No newline at end of file
 
 changed: [Jns234-2]
---- before
-+++ after: /Users/user/.ansible/tmp/ansible-local-5949hn8wiu3e/tmpkebblxvo/keepalived-exporter.service.j2
-@@ -0,0 +1,9 @@
-+[Unit]
-+
-+[Service]
-+Restart=always
-+User=root
-+ExecStart=/usr/local/bin/keepalived-exporter $ARGS
-+
-+[Install]
-+WantedBy=multi-user.target
-\ No newline at end of file
-
-changed: [Jns234-1]
 
 TASK [keepalived : Start service keepalived-exporter] **************************
+ok: [Jns234-1]
 changed: [Jns234-2]
-changed: [Jns234-1]
 
 RUNNING HANDLER [keepalived : Systemctl daemon-reload] *************************
 changed: [Jns234-2]
-changed: [Jns234-1]
 
 RUNNING HANDLER [keepalived : restart keepalived] ******************************
-changed: [Jns234-1]
 changed: [Jns234-2]
+changed: [Jns234-1]
 
 RUNNING HANDLER [keepalived : restart keepalived-exporter] *********************
-changed: [Jns234-1]
 changed: [Jns234-2]
 
 RUNNING HANDLER [keepalived : restart haproxy] *********************************
 changed: [Jns234-2]
-changed: [Jns234-1]
 
 PLAY RECAP *********************************************************************
-Jns234-1                   : ok=84   changed=63   unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
-Jns234-2                   : ok=84   changed=65   unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+Jns234-1                   : ok=73   changed=9    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+Jns234-2                   : ok=82   changed=46   unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
 Jns234-3                   : ok=72   changed=56   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
 + /Users/user/ansible-venv/bin/ansible-playbook infra.yaml --diff
@@ -5996,24 +5169,24 @@ Jns234-3                   : ok=72   changed=56   unreachable=0    failed=0    s
 PLAY [Initial setup] ***********************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
 ok: [Jns234-3]
+ok: [Jns234-2]
 
 TASK [init : Update APT cache] *************************************************
+ok: [Jns234-2]
 ok: [Jns234-3]
 ok: [Jns234-1]
-ok: [Jns234-2]
 
 TASK [init : have prometheus node exporter on all machines] ********************
-ok: [Jns234-2]
 ok: [Jns234-1]
 ok: [Jns234-3]
+ok: [Jns234-2]
 
 TASK [init : Have ca-certificates package] *************************************
-ok: [Jns234-3]
 ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-3]
 
 TASK [init : configure syslog] *************************************************
 ok: [Jns234-2]
@@ -6031,49 +5204,49 @@ ok: [Jns234-2]
 ok: [Jns234-3]
 
 TASK [init : backup user known hosts] ******************************************
-ok: [Jns234-3]
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
+ok: [Jns234-3]
 
 TASK [init : create directory restore to backup user] **************************
+ok: [Jns234-1]
 ok: [Jns234-2]
 ok: [Jns234-3]
-ok: [Jns234-1]
 
 TASK [init : install duplicity] ************************************************
-ok: [Jns234-3]
 ok: [Jns234-2]
+ok: [Jns234-3]
 ok: [Jns234-1]
 
 PLAY [Database server] *********************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : Update the repository cache and update package "mysql-server" to latest version] ***
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : config mysql] ****************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : start mysql-server] **********************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : MySQL database] **************************************************
 ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [mysql : Create Mysql user for agama database] ****************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : Create Mysql user for mysqld exporter] ***************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : configure mysqld] ************************************************
 ok: [Jns234-2]
@@ -6088,24 +5261,24 @@ ok: [Jns234-2]
 ok: [Jns234-1]
 
 TASK [mysql : create MySQL user backup] ****************************************
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [mysql : add user.cnf] ****************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : crontab present] *************************************************
 ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [mysql : config mysqld exporter] ******************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : replication MySQL user] ******************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : read only mode] **************************************************
 ok: [Jns234-2]
@@ -6114,13 +5287,13 @@ ok: [Jns234-1]
 PLAY [setup bind9] *************************************************************
 
 TASK [Gathering Facts] *********************************************************
+ok: [Jns234-3]
 ok: [Jns234-2]
 ok: [Jns234-1]
-ok: [Jns234-3]
 
 TASK [bind : Get Bind9 and bind exporter] **************************************
-ok: [Jns234-3]
 ok: [Jns234-2]
+ok: [Jns234-3]
 ok: [Jns234-1]
 
 TASK [bind : Copy conf.options to machine] *************************************
@@ -6128,10 +5301,10 @@ ok: [Jns234-1]
 ok: [Jns234-3]
 ok: [Jns234-2]
 
-TASK [bind : Copy conf.options to machine] *************************************
+TASK [bind : Copy conf.options.local to machine] *******************************
 ok: [Jns234-1]
-ok: [Jns234-3]
 ok: [Jns234-2]
+ok: [Jns234-3]
 
 TASK [bind : Copy zone to MASTER machine] **************************************
 skipping: [Jns234-1]
@@ -6144,9 +5317,9 @@ skipping: [Jns234-2]
 ok: [Jns234-3]
 
 TASK [bind : Bind exporter is started] *****************************************
-ok: [Jns234-1]
 ok: [Jns234-2]
 ok: [Jns234-3]
+ok: [Jns234-1]
 
 TASK [bind : Flush!] ***********************************************************
 
@@ -6166,17 +5339,17 @@ skipping: [Jns234-1] => (item=None)
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
-skipping: [Jns234-1] => (item=None) 
-skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
+skipping: [Jns234-2] => (item=None) 
+skipping: [Jns234-1] => (item=None) 
+skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-1]
-skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
@@ -6197,71 +5370,71 @@ ok: [Jns234-3] => (item=None)
 ok: [Jns234-3]
 
 TASK [bind : Bind9 is started] *************************************************
-ok: [Jns234-3]
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
+ok: [Jns234-3]
 
 PLAY [Change the dns resov for bind9] ******************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-1]
-ok: [Jns234-2]
 ok: [Jns234-3]
+ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [bind_resolv : Stop systemd-resolved] *************************************
+ok: [Jns234-2]
 ok: [Jns234-3]
 ok: [Jns234-1]
-ok: [Jns234-2]
 
 TASK [bind_resolv : Copy manual resolve to machine] ****************************
 ok: [Jns234-2]
-ok: [Jns234-1]
 ok: [Jns234-3]
+ok: [Jns234-1]
 
 PLAY [Install docker and dependencies, ensure docker started] ******************
 
 TASK [Gathering Facts] *********************************************************
+ok: [Jns234-3]
 ok: [Jns234-2]
 ok: [Jns234-1]
-ok: [Jns234-3]
 
 TASK [docker : Install docker] *************************************************
-ok: [Jns234-3]
 ok: [Jns234-2]
+ok: [Jns234-3]
 ok: [Jns234-1]
 
 TASK [docker : Ensure docker is started] ***************************************
-ok: [Jns234-1]
 ok: [Jns234-3]
+ok: [Jns234-1]
 ok: [Jns234-2]
 
 PLAY [update and setup agama] **************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [agama : Create agama dir] ************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [agama : Download Dockerfile and agama.py] ********************************
-ok: [Jns234-1] => (item=Dockerfile)
 ok: [Jns234-2] => (item=Dockerfile)
+ok: [Jns234-1] => (item=Dockerfile)
 ok: [Jns234-2] => (item=agama.py)
 ok: [Jns234-1] => (item=agama.py)
 
 TASK [agama : Build agama image] ***********************************************
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [agama : agama container] *************************************************
 ok: [Jns234-2]
 ok: [Jns234-1]
 
 TASK [agama : agama container nuber 2] *****************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 PLAY [reconfig nginx] **********************************************************
 
@@ -6277,23 +5450,23 @@ ok: [Jns234-1]
 
 TASK [nginx : copy default conf to nginx sites-enabled] ************************
 ok: [Jns234-1]
-ok: [Jns234-3]
 ok: [Jns234-2]
+ok: [Jns234-3]
 
 TASK [nginx : start nginx and nginx node exporter] *****************************
 ok: [Jns234-1] => (item=nginx)
-ok: [Jns234-3] => (item=nginx)
 ok: [Jns234-2] => (item=nginx)
-ok: [Jns234-3] => (item=prometheus-nginx-exporter)
+ok: [Jns234-3] => (item=nginx)
 ok: [Jns234-1] => (item=prometheus-nginx-exporter)
 ok: [Jns234-2] => (item=prometheus-nginx-exporter)
+ok: [Jns234-3] => (item=prometheus-nginx-exporter)
 
 PLAY [Install and configure prometheus] ****************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [Jns234-3]
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [prometheus : Install prometheus] *****************************************
 ok: [Jns234-3]
@@ -6307,12 +5480,12 @@ ok: [Jns234-1]
 
 TASK [prometheus : copy prometheus default config] *****************************
 ok: [Jns234-3]
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [prometheus : start prometheus] *******************************************
-ok: [Jns234-2]
 ok: [Jns234-3]
+ok: [Jns234-2]
 ok: [Jns234-1]
 
 PLAY [Install influxdb and exporter] *******************************************
@@ -6413,34 +5586,34 @@ ok: [Jns234-3]
 PLAY [Install haproxy] *********************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [haproxy : Install Haproxy] ***********************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [haproxy : HAProxy config] ************************************************
 ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [haproxy : Add args] ******************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [haproxy : Start haproxy] *************************************************
 ok: [Jns234-2]
 ok: [Jns234-1]
 
 TASK [haproxy : Start service haproxy-exporter] ********************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 PLAY [Install Keepalived] ******************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [keepalived : Create folder for keepalived] *******************************
 ok: [Jns234-2]
@@ -6459,8 +5632,8 @@ ok: [Jns234-2]
 ok: [Jns234-1]
 
 TASK [keepalived : creater keepalivescript user] *******************************
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [keepalived : Propagate keepalived script] ********************************
 ok: [Jns234-2]
@@ -6471,8 +5644,8 @@ ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [keepalived : Create keepalived-exporter service] *************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [keepalived : Start service keepalived-exporter] **************************
 ok: [Jns234-1]
@@ -6486,17 +5659,17 @@ Jns234-3                   : ok=63   changed=0    unreachable=0    failed=0    s
 + /Users/user/ansible-venv/bin/ansible all -b -m reboot -a test_command=uptime
 Jns234-3 | CHANGED => {
     "changed": true,
-    "elapsed": 64,
-    "rebooted": true
-}
-Jns234-1 | CHANGED => {
-    "changed": true,
-    "elapsed": 74,
+    "elapsed": 42,
     "rebooted": true
 }
 Jns234-2 | CHANGED => {
     "changed": true,
-    "elapsed": 76,
+    "elapsed": 46,
+    "rebooted": true
+}
+Jns234-1 | CHANGED => {
+    "changed": true,
+    "elapsed": 48,
     "rebooted": true
 }
 + /Users/user/ansible-venv/bin/ansible-playbook infra.yaml --diff
@@ -6504,9 +5677,9 @@ Jns234-2 | CHANGED => {
 PLAY [Initial setup] ***********************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-1]
 ok: [Jns234-3]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [init : Update APT cache] *************************************************
 ok: [Jns234-3]
@@ -6515,33 +5688,33 @@ ok: [Jns234-1]
 
 TASK [init : have prometheus node exporter on all machines] ********************
 ok: [Jns234-3]
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [init : Have ca-certificates package] *************************************
 ok: [Jns234-3]
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [init : configure syslog] *************************************************
-ok: [Jns234-1]
-ok: [Jns234-2]
 ok: [Jns234-3]
+ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [init : start syslog] *****************************************************
 ok: [Jns234-3]
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [init : backup user] ******************************************************
-ok: [Jns234-2]
 ok: [Jns234-3]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [init : backup user known hosts] ******************************************
-ok: [Jns234-2]
-ok: [Jns234-3]
 ok: [Jns234-1]
+ok: [Jns234-3]
+ok: [Jns234-2]
 
 TASK [init : create directory restore to backup user] **************************
 ok: [Jns234-1]
@@ -6549,15 +5722,15 @@ ok: [Jns234-3]
 ok: [Jns234-2]
 
 TASK [init : install duplicity] ************************************************
-ok: [Jns234-1]
 ok: [Jns234-3]
+ok: [Jns234-1]
 ok: [Jns234-2]
 
 PLAY [Database server] *********************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : Update the repository cache and update package "mysql-server" to latest version] ***
 ok: [Jns234-1]
@@ -6576,20 +5749,20 @@ ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [mysql : Create Mysql user for agama database] ****************************
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [mysql : Create Mysql user for mysqld exporter] ***************************
 ok: [Jns234-2]
 ok: [Jns234-1]
 
 TASK [mysql : configure mysqld] ************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : make sure mysql-exporter is started] *****************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : create mysql backup directory and add to user backup] ************
 ok: [Jns234-1]
@@ -6608,16 +5781,16 @@ ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [mysql : config mysqld exporter] ******************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [mysql : replication MySQL user] ******************************************
 ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [mysql : read only mode] **************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 PLAY [setup bind9] *************************************************************
 
@@ -6627,18 +5800,18 @@ ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [bind : Get Bind9 and bind exporter] **************************************
-ok: [Jns234-1]
 ok: [Jns234-3]
+ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [bind : Copy conf.options to machine] *************************************
-ok: [Jns234-1]
-ok: [Jns234-2]
 ok: [Jns234-3]
-
-TASK [bind : Copy conf.options to machine] *************************************
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
+
+TASK [bind : Copy conf.options.local to machine] *******************************
+ok: [Jns234-2]
+ok: [Jns234-1]
 ok: [Jns234-3]
 
 TASK [bind : Copy zone to MASTER machine] **************************************
@@ -6670,15 +5843,19 @@ TASK [bind : Add CNAME records] ************************************************
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
+skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
+skipping: [Jns234-1] => (item=None) 
+skipping: [Jns234-2] => (item=None) 
+skipping: [Jns234-2] => (item=None) 
+skipping: [Jns234-1] => (item=None) 
+skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
-skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
-skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1] => (item=None) 
@@ -6686,10 +5863,6 @@ skipping: [Jns234-2] => (item=None)
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-1]
-skipping: [Jns234-2] => (item=None) 
-skipping: [Jns234-2] => (item=None) 
-skipping: [Jns234-2] => (item=None) 
-skipping: [Jns234-2] => (item=None) 
 skipping: [Jns234-2]
 ok: [Jns234-3] => (item=None)
 ok: [Jns234-3] => (item=None)
@@ -6705,15 +5878,15 @@ ok: [Jns234-3] => (item=None)
 ok: [Jns234-3]
 
 TASK [bind : Bind9 is started] *************************************************
-ok: [Jns234-2]
-ok: [Jns234-3]
 ok: [Jns234-1]
+ok: [Jns234-3]
+ok: [Jns234-2]
 
 PLAY [Change the dns resov for bind9] ******************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-1]
 ok: [Jns234-3]
+ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [bind_resolv : Stop systemd-resolved] *************************************
@@ -6722,8 +5895,8 @@ ok: [Jns234-3]
 ok: [Jns234-2]
 
 TASK [bind_resolv : Copy manual resolve to machine] ****************************
-ok: [Jns234-3]
 ok: [Jns234-1]
+ok: [Jns234-3]
 ok: [Jns234-2]
 
 PLAY [Install docker and dependencies, ensure docker started] ******************
@@ -6739,9 +5912,9 @@ ok: [Jns234-2]
 ok: [Jns234-1]
 
 TASK [docker : Ensure docker is started] ***************************************
-ok: [Jns234-3]
 ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-3]
 
 PLAY [update and setup agama] **************************************************
 
@@ -6760,12 +5933,12 @@ ok: [Jns234-2] => (item=agama.py)
 ok: [Jns234-1] => (item=agama.py)
 
 TASK [agama : Build agama image] ***********************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [agama : agama container] *************************************************
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [agama : agama container nuber 2] *****************************************
 ok: [Jns234-1]
@@ -6774,34 +5947,34 @@ ok: [Jns234-2]
 PLAY [reconfig nginx] **********************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Jns234-3]
 ok: [Jns234-1]
+ok: [Jns234-3]
 ok: [Jns234-2]
 
 TASK [nginx : install nginx and prometheus-nginx-exporter] *********************
-ok: [Jns234-1]
 ok: [Jns234-3]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [nginx : copy default conf to nginx sites-enabled] ************************
 ok: [Jns234-1]
-ok: [Jns234-3]
 ok: [Jns234-2]
+ok: [Jns234-3]
 
 TASK [nginx : start nginx and nginx node exporter] *****************************
 ok: [Jns234-1] => (item=nginx)
-ok: [Jns234-3] => (item=nginx)
 ok: [Jns234-2] => (item=nginx)
+ok: [Jns234-3] => (item=nginx)
 ok: [Jns234-1] => (item=prometheus-nginx-exporter)
-ok: [Jns234-3] => (item=prometheus-nginx-exporter)
 ok: [Jns234-2] => (item=prometheus-nginx-exporter)
+ok: [Jns234-3] => (item=prometheus-nginx-exporter)
 
 PLAY [Install and configure prometheus] ****************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [Jns234-3]
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [prometheus : Install prometheus] *****************************************
 ok: [Jns234-3]
@@ -6809,9 +5982,9 @@ ok: [Jns234-2]
 ok: [Jns234-1]
 
 TASK [prometheus : copy prometheus config] *************************************
+ok: [Jns234-3]
 ok: [Jns234-1]
 ok: [Jns234-2]
-ok: [Jns234-3]
 
 TASK [prometheus : copy prometheus default config] *****************************
 ok: [Jns234-3]
@@ -6819,9 +5992,9 @@ ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [prometheus : start prometheus] *******************************************
-ok: [Jns234-1]
 ok: [Jns234-3]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 PLAY [Install influxdb and exporter] *******************************************
 
@@ -6925,20 +6098,20 @@ ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [haproxy : Install Haproxy] ***********************************************
-ok: [Jns234-1]
 ok: [Jns234-2]
+ok: [Jns234-1]
 
 TASK [haproxy : HAProxy config] ************************************************
 ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [haproxy : Add args] ******************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [haproxy : Start haproxy] *************************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [haproxy : Start service haproxy-exporter] ********************************
 ok: [Jns234-2]
@@ -6951,36 +6124,36 @@ ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [keepalived : Create folder for keepalived] *******************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [keepalived : Configure keepalived] ***************************************
 ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [keepalived : Inatall keepalived] *****************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [keepalived : Start keepalived] *******************************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [keepalived : creater keepalivescript user] *******************************
 ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [keepalived : Propagate keepalived script] ********************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [keepalived : Download keepalived exporter] *******************************
 ok: [Jns234-1]
 ok: [Jns234-2]
 
 TASK [keepalived : Create keepalived-exporter service] *************************
-ok: [Jns234-2]
 ok: [Jns234-1]
+ok: [Jns234-2]
 
 TASK [keepalived : Start service keepalived-exporter] **************************
 ok: [Jns234-1]
@@ -6992,4 +6165,4 @@ Jns234-2                   : ok=69   changed=0    unreachable=0    failed=0    s
 Jns234-3                   : ok=63   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
 + date
-Wed Jan 10 10:32:30 EET 2024
+Wed Jan 10 16:56:16 EET 2024
