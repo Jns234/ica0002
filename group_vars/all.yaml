@@ -124,3 +124,5 @@ cname_records:
     web2: "{{ groups['web_servers'][1] }}"
 
 nr_of_agama_containers_per_vm: 2
+
+sites: "{{ cname_records.keys() | select('match', 'web.*') | list}}"

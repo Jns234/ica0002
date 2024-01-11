@@ -26,6 +26,6 @@
 [[inputs.system]]
 [[outputs.influxdb]]
   database = "{{ influx_db_name }}"
-  urls = ["http://{{ groups['influxdb_servers'][0]}}:{{ influx_db_port }}"]
+  urls = ["http://influxdb:{{ influx_db_port }}"]
 [[inputs.syslog]]
   server = "udp://:6514"

@@ -53,7 +53,7 @@
     dest: /var/lib/prometheus/.my.cnf
     owner: prometheus
     group: prometheus
-    mode: 0644
+    mode: 0640
   no_log: yes
   notify:
   - Restart mysqld exporter
@@ -70,7 +70,7 @@
     state: directory
     owner: backup
     group: backup
-    mode: '0755'
+    mode: '0750'
 
 - name: create MySQL user backup
   community.mysql.mysql_user:
@@ -109,7 +109,7 @@
   community.mysql.mysql_user:
     name: "replication"
     password: "{{ replication_mysql_password }}"
-    host: "%"
+    host: "localhost"
     priv: "*.*:REPLICATION SLAVE"
     login_unix_socket: /var/run/mysqld/mysqld.sock
   no_log: true

@@ -32,16 +32,15 @@ defaults
 
 listen agama
      bind :88
-     stats enable
-     stats uri /haproxy?stats
-     server agama11 Jns234-1:8001 check
-     server agama12 Jns234-1:8002 check
-     server agama21 Jns234-2:8001 check
-     server agama22 Jns234-2:8002 check
+{%for cname in sites %}
+{%for interval in range(0, nr_of_agama_containers_per_vm)%}
+	server agama{{ cname[-1] }}{{ interval }}  {{ cname }}:{{ agama_docker_port + interval }} check
+{% endfor %}
+{% endfor %}
 
-
-listen stats
-    bind :9188
+frontend stats
+    mode http
+    bind *:9188
     stats enable
-    stats uri /stats
+    stats uri /haproxy?stats
     stats refresh 5s

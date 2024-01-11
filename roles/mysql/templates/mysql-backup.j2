@@ -1,5 +1,4 @@
 {% if inventory_hostname == mysql_backup_host %}
-* * * * * backup mysqldump agama > /home/backup/mysql/agama.sql
+00 23 * * * backup mysqldump agama > /home/backup/mysql/agama.sql
 0 0 * * *  backup  duplicity --no-encryption full /home/backup/mysql/ rsync://Jns234@backup.jankang.jk/mysql
-00 22 * * * backup  duplicity --no-encryption incremental /home/backup/mysql/ rsync://Jns234@backup.jankang.jk/mysql
 {% endif %}

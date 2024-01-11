@@ -28,22 +28,12 @@
 
 - name: agama container
   ansible.builtin.docker_container:
-    name: agama
+    name: agama-{{ item }}
     image: agama
     env:
       AGAMA_DATABASE_URI: mysql+pymysql://{{ mysql_user }}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}
     ports:
-      - "{{ agama_docker_port }}:8000"
+      - "{{ agama_docker_port|int + item|int }}:8000"
     restart_policy: always
   no_log: true
-
-- name: agama container nuber 2
-  ansible.builtin.docker_container:
-    name: agama2
-    image: agama
-    env:
-      AGAMA_DATABASE_URI: mysql+pymysql://{{ mysql_user }}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}
-    ports:
-      - "{{ agama_docker_port + 1 }}:8000"
-    restart_policy: always
-  no_log: true
+  with_sequence: start=0 end="{{ nr_of_agama_containers_per_vm }}"
